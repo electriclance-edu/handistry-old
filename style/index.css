@@ -1,0 +1,64 @@
+/* [LANCE]
+SO, SOME NOTES:
+When I program in CSS, I do not use IDs (like <p id="rat"></p>)
+IDs are reserved for JavaScript usage (document.getElemById())
+As such, everything is done with classes (<p class="rat"></p>)
+Just googled CSS class naming schemes right now, here's something cool:
+    UNIQUE CLASSES are prefixed with __
+        - unique classes are replacement for ids
+        - meant to be only used once
+        - eg. .__virtualMouseCursor
+    BLOCK CLASSES are prefixed with b-
+        - block classes are classes that are meant to be reused
+        - are capable of standing alone
+        - eg. .b-chemical, .b-beaker, .b-equipment
+    PARTS OF BLOCKS are prefixed with the classname of the block + ---
+        - parts cannot stand alone without their parent block
+        - eg. .b-chemical---tooltip, .b-beaker---
+    MODIFYING CLASSES have no prefix
+        - modifying classes are classes that cannot stand alone at all
+        - meant to build on existing classes
+        - preferably verb or adjective names
+        - eg. .smallText, .absoluteCentered
+*/
+
+/* 
+-------------------------------
+GENERAL TAGS and UNIQUE CLASSES
+-------------------------------
+*/
+body {
+    margin:0;
+    padding:0;
+    width:100vw;
+    height:100vh;
+}
+p, button, span {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size:20px;
+    margin:0;
+}
+.__virtualMouseStage {
+    pointer-events:none; /*only for now*/
+}
+.__content {
+
+}
+/* 
+-----------------
+MODIFYING CLASSES
+-----------------
+*/
+.fillsEntireScreen {
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.absoluteCentered {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
