@@ -4,10 +4,10 @@ When I program in CSS, I do not use IDs (like <p id="rat"></p>)
 IDs are reserved for JavaScript usage (document.getElemById())
 As such, everything is done with classes (<p class="rat"></p>)
 Just googled CSS class naming schemes right now, here's something cool:
-    UNIQUE CLASSES are prefixed with __
+    UNIQUE CLASSES have no prefix
         - unique classes are replacement for ids
         - meant to be only used once
-        - eg. .__virtualMouseCursor
+        - eg. .virtualMouseCursor
     BLOCK CLASSES are prefixed with b-
         - block classes are classes that are meant to be reused
         - are capable of standing alone
@@ -15,12 +15,21 @@ Just googled CSS class naming schemes right now, here's something cool:
     PARTS OF BLOCKS are prefixed with the classname of the block + ---
         - parts cannot stand alone without their parent block
         - eg. .b-chemical---tooltip, .b-beaker---
-    MODIFYING CLASSES have no prefix
+    MODIFYING CLASSES are prefixed with _
         - modifying classes are classes that cannot stand alone at all
         - meant to build on existing classes
         - preferably verb or adjective names
-        - eg. .smallText, .absoluteCentered
+        - eg. ._smallText, ._absoluteCentered
+    DEBUG/TEMPORARY CLASSES ARE PEFIXED WITH debug-
+        - mainly for stuff that we don't want the user to see  
 */
+
+/* 
+-------------------------
+IMPORTS and MEDIA QUERIES
+-------------------------
+*/
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
 
 /* 
 -------------------------------
@@ -32,33 +41,56 @@ body {
     padding:0;
     width:100vw;
     height:100vh;
+    overflow:hidden;
 }
 p, button, span {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size:20px;
     margin:0;
 }
-.__virtualMouseStage {
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+    margin:0;
+}
+.virtualMouseStage {
     pointer-events:none; /*only for now*/
 }
-.__content {
-
+.titleHeader {
+    margin-bottom:10px;
+}
+.smiley {
+    position:absolute;
+    bottom:-200px;
+    right:-200px;
+    width:1000px;
+    height:500px;
 }
 /* 
 -----------------
 MODIFYING CLASSES
 -----------------
 */
-.fillsEntireScreen {
+._fillsEntireScreen {
     width:100vw;
     height:100vh;
     position:absolute;
     top:0;
     left:0;
 }
-.absoluteCentered {
+._absoluteCentered {
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
+}
+/* 
+-------------
+DEBUG CLASSES
+-------------
+*/
+.debug-terribleIntro {
+    position:absolute;
+    top:50%;
+    transform:translatey(-50%);
+    left:100px;
 }
