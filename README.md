@@ -1,4 +1,4 @@
-# [Handistry](https://electriclance-edu.github.io/handistry/)
+# [Handistry - Learning Branch](https://electriclance-edu.github.io/handistry/)
 
 A browser-based hand gesture controlled virtual chemistry laboratory (VCL) integrating the [Google MediaPipe Hands Solution](https://google.github.io/mediapipe/solutions/hands.html).
 
