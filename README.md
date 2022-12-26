@@ -2,6 +2,8 @@
 
 A browser-based hand gesture controlled virtual chemistry laboratory (VCL) integrating the [Google MediaPipe Hands Solution](https://google.github.io/mediapipe/solutions/hands.html).
 
+Made by Team Handistry (R2-K2-02) from PSHS-MC (Batch 2024).
+
 ## Developers
 |Developer|E-mail Address|GitHub Handle|
 |-----------|----------------|---------------|
