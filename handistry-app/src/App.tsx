@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    document.title = "Handistry"
+  }, []);
   return (
+    //Code here the main app component
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -16,7 +20,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn Deez Nuts
         </a>
       </header>
     </div>
