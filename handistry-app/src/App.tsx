@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import './App.css';
+import good from './resources/img/good.png';
 
 function App() {
   useEffect(() => {
@@ -21,6 +22,7 @@ function App() {
           Learn Deez Nuts
         </a>
       </header>
+      <img src={good}/>
     </div>
   );
 }

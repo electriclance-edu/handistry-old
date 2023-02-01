@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {REACTION_LIST} from './vcl-features/FeaturedReactions';
+
+console.log(REACTION_LIST[0].getReactants());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
