@@ -1,16 +1,19 @@
 import {Chemical} from '../vcl-model/Chemical';
+import chemicalJSON from './chemicals.json';
 
-let H2O: Chemical = {
-    name: 'Water',
-    formula: 'H2O',
-    molarMass: 18.015,
-    charge: 0,
-}
-let NaCl: Chemical = {
-    name: 'Sodium chloride',
-    formula: 'NaCl',
-    molarMass: 58.44,
-    charge: 0,
+let CHEMICAL_LIST: Chemical[] = [];
+
+for(let i=0; i<chemicalJSON.length; i++) {
+    let newChemical: Chemical = {
+        name: chemicalJSON[i]['name'],
+        formula: chemicalJSON[i]['formula'],
+        phase: chemicalJSON[i]['phase'],
+        molarMass: chemicalJSON[i]['molarMass'],
+        charge: chemicalJSON[i]['charge'],
+        enthalpyForm: chemicalJSON[i]['enthalpyForm'],
+        entropyForm: chemicalJSON[i]['entropyForm'],
+    }
+    CHEMICAL_LIST.push(newChemical);
 }
 
-export let CHEMICAL_LIST: Chemical[] = [H2O, NaCl];
+export default CHEMICAL_LIST;

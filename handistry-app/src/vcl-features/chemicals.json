@@ -1,0 +1,29 @@
+[
+    {
+        "name": "L. water",
+        "formula": "H2O",
+        "phase": "l",
+        "molarMass": 18.015,
+        "charge": 0,
+        "enthalpyForm": -285.83,
+        "entropyForm": 69.91
+    },
+    {
+        "name": "Aq. hydronium ion",
+        "formula": "H+",
+        "phase": "aq",
+        "molarMass": 1.008,
+        "charge": 1,
+        "enthalpyForm": 0,
+        "entropyForm": 0
+    },
+    {
+        "name": "Aq. hydroxide ion",
+        "formula": "OH-",
+        "phase": "aq",
+        "molarMass": 17.007,
+        "charge": -1,
+        "enthalpyForm": -229.94,
+        "entropyForm": -10.54
+    }
+]

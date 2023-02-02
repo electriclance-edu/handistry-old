@@ -1,7 +1,10 @@
 export type Chemical = {
-    name: string,
+    name: string, 
     formula: string,
-    molarMass: number,
-    charge: number,
+    phase: string,
+    molarMass: number, //in g/mol
+    charge: number, //integer
+    enthalpyForm: number, //in kJ/mol
+    entropyForm: number, //in J/mol K
     moles?: number
 }

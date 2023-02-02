@@ -5,6 +5,7 @@ export class Reaction {
 
     private reactants: Map<string, Chemical>;
     private products: Map<string, Chemical>;
+    private equation: Map<string, number>; 
     private equilibriumK: number;
     private enthalpyRxn: number;
     private entropyRxn: number;
@@ -12,9 +13,10 @@ export class Reaction {
     private activationE: number;
 
     // CONSTRUCTOR
-    public constructor(rxnReactants: Map<string, Chemical>, rxnProducts: Map<string, Chemical>, K: number, H: number, S: number, T: number, Ea: number) {
+    public constructor(rxnReactants: Map<string, Chemical>, rxnProducts: Map<string, Chemical>, eq: Map<string, number>, K: number, H: number, S: number, T: number, Ea: number) {
         this.reactants = rxnReactants;
         this.products = rxnProducts;
+        this.equation = eq;
         this.equilibriumK = K;
         this.enthalpyRxn = H;
         this.entropyRxn = S;
