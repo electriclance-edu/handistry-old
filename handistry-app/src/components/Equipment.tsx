@@ -1,2 +1,2 @@
-//
+// has a sprite
 export {}
