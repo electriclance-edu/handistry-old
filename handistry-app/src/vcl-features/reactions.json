@@ -2,12 +2,11 @@
     {
         "name": "Autoionization of water",
         "reactants": ["H2O"],
-        "products": ["H3O+", "OH-"],
-        "equation": {"H2O": 1}, 
+        "reactantsStoich": [1],
+        "products": ["H+", "OH-"],
+        "productsStoich": [1, 1],
         "K": 1e-14,
-        "Hrxn": 56.78,
-        "Srxn": number,
         "Trxn": 298,
-        "Erxn": number;        
+        "Erxn": 74.4752        
     }
 ]

@@ -1,26 +1,30 @@
-import {Dictionary} from '../utlilities/utility';
+import { calculateEnthalpyRxn, calculateEntropyRxn, calculateEquilibriumK, calculateGibbsFreeEnergy } from '../calculators/calculators';
 import {Chemical} from './Chemical';
 
 export class Reaction {
 
-    private reactants: Map<string, Chemical>;
-    private products: Map<string, Chemical>;
-    private equation: Map<string, number>; 
+    private name: string;
+    private reactants: Map<string, [Chemical, number]>;
+    private products: Map<string, [Chemical, number]>;
+    // private equation: Map<string, number>; 
     private equilibriumK: number;
-    private enthalpyRxn: number;
-    private entropyRxn: number;
+    private gibbsFreeRxn: number; //standard gibbs free energy
+    private enthalpyRxn: number; //standard enthalpy
+    private entropyRxn: number; //standard entropy
     private temperature: number;
     private activationE: number;
 
     // CONSTRUCTOR
-    public constructor(rxnReactants: Map<string, Chemical>, rxnProducts: Map<string, Chemical>, eq: Map<string, number>, K: number, H: number, S: number, T: number, Ea: number) {
+    public constructor(n: string, rxnReactants: Map<string, [Chemical, number]>, rxnProducts: Map<string, [Chemical, number]>, T: number, Ea: number) {
+        this.name = n;
         this.reactants = rxnReactants;
         this.products = rxnProducts;
-        this.equation = eq;
-        this.equilibriumK = K;
-        this.enthalpyRxn = H;
-        this.entropyRxn = S;
+        // this.equation = eq;
+        this.enthalpyRxn = calculateEnthalpyRxn(rxnReactants, rxnProducts);
+        this.entropyRxn = calculateEntropyRxn(rxnReactants, rxnProducts);
         this.temperature = T;
+        this.gibbsFreeRxn = calculateGibbsFreeEnergy(this.enthalpyRxn, this.entropyRxn, this.temperature);
+        this.equilibriumK = calculateEquilibriumK(this.gibbsFreeRxn);
         this.activationE = Ea;
     }
     

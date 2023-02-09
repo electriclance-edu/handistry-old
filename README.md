@@ -4,6 +4,10 @@ A browser-based hand gesture controlled virtual chemistry laboratory (VCL) integ
 
 Made by Team Handistry (R2-K2-02) from PSHS-MC (Batch 2024).
 
+## Technologies Used
+- TypeScript
+- ReactJS
+
 ## Developers
 |Developer|E-mail Address|GitHub Handle|
 |-----------|----------------|---------------|

@@ -1,7 +1,7 @@
 import {Chemical} from '../vcl-model/Chemical';
 import chemicalJSON from './chemicals.json';
 
-let CHEMICAL_LIST: Chemical[] = [];
+let CHEMICAL_LIST: Map<string, Chemical> = new Map();
 
 for(let i=0; i<chemicalJSON.length; i++) {
     let newChemical: Chemical = {
@@ -13,7 +13,7 @@ for(let i=0; i<chemicalJSON.length; i++) {
         enthalpyForm: chemicalJSON[i]['enthalpyForm'],
         entropyForm: chemicalJSON[i]['entropyForm'],
     }
-    CHEMICAL_LIST.push(newChemical);
+    CHEMICAL_LIST.set(newChemical.formula, newChemical);
 }
 
 export default CHEMICAL_LIST;

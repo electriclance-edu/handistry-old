@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import good from './resources/img/good.png';
 
 function App() {
   useEffect(() => {
@@ -19,10 +18,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn Deez Nuts
+          Learn More
         </a>
       </header>
-      <img src={good}/>
     </div>
   );
 }
