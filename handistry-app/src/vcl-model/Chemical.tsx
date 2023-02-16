@@ -6,5 +6,5 @@ export type Chemical = {
     charge: number, //integer
     enthalpyForm: number, //in kJ/mol
     entropyForm: number, //in J/mol K
-    moles?: number
+    moles: number //default is 0
 }

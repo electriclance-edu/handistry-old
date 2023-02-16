@@ -24,3 +24,17 @@ export function toStoichChemicalMap(formulaData: string[], stoichData: number[])
     
     return chemicalList;
 }
+
+export function addStoichChemicalMap(map1: Map<string, [Chemical, number]>, map2: Map<string, [Chemical, number]>) {
+    let newStoichChemicalMap : Map<string, [Chemical, number]> = map1;
+    map2.forEach((value: [Chemical,number], key: string) => {
+        if (newStoichChemicalMap.has(key)) {
+            //@ts-ignore
+            newStoichChemicalMap.get(key)[1] += map2.get(key)[1];
+        }
+        else {
+            newStoichChemicalMap.set(key, value);
+        }
+    });
+    return newStoichChemicalMap;
+}

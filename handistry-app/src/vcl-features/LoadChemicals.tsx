@@ -12,6 +12,7 @@ for(let i=0; i<chemicalJSON.length; i++) {
         charge: chemicalJSON[i]['charge'],
         enthalpyForm: chemicalJSON[i]['enthalpyForm'],
         entropyForm: chemicalJSON[i]['entropyForm'],
+        moles: 0
     }
     CHEMICAL_LIST.set(newChemical.formula, newChemical);
 }

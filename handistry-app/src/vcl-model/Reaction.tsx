@@ -15,11 +15,14 @@ export class Reaction {
     private activationE: number;
 
     // CONSTRUCTOR
-    public constructor(n: string, rxnReactants: Map<string, [Chemical, number]>, rxnProducts: Map<string, [Chemical, number]>, T: number, Ea: number) {
+    public constructor(n: string,
+                       rxnReactants: Map<string, [Chemical, number]>,
+                       rxnProducts: Map<string, [Chemical, number]>,
+                       T: number,
+                       Ea: number) {
         this.name = n;
         this.reactants = rxnReactants;
         this.products = rxnProducts;
-        // this.equation = eq;
         this.enthalpyRxn = calculateEnthalpyRxn(rxnReactants, rxnProducts);
         this.entropyRxn = calculateEntropyRxn(rxnReactants, rxnProducts);
         this.temperature = T;
@@ -32,25 +35,17 @@ export class Reaction {
     
 
     // GETTER FUNCTIONS
-    public getReactants() {
-        return this.reactants;
-    }
-    public getProducts() {
-        return this.products;
-    }
-    public getK() {
-        return this.equilibriumK;
-    }
-    public getH() {
-        return this.enthalpyRxn;
-    }
-    public getS() {
-        return this.entropyRxn;
-    }
-    public getT() {
-        return this.temperature
-    }
-    public getEa() {
-        return this.activationE;
-    }
+    public getName() { return this.name; }
+    public getReactants() { return this.reactants; }
+    public getProducts() { return this.products;}
+    public getK() { return this.equilibriumK;}
+    public getH() { return this.enthalpyRxn;}
+    public getS() { return this.entropyRxn; }
+    public getT() { return this.temperature }
+    public getEa() { return this.activationE; }
+
+    // SETTER FUNCTIONS
+    public setK(newK: number) { this.equilibriumK = newK; }
+    public setH(newH: number) { this.enthalpyRxn = newH; }
+    public setS(newS: number) { this.entropyRxn = newS; }
 }
