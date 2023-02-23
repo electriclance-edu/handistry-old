@@ -2,6 +2,7 @@ import { CONSTANTS } from './custom_constants';
 import { Chemical } from '../vcl-model/Chemical';
 import { Reaction} from '../vcl-model/Reaction';
 import { addStoichChemicalMap } from '../utlilities/utility';
+var nr = require('newton-raphson-method');
 
 export function calculateEnthalpyRxn(reactants: Map<string, [Chemical, number]>, products: Map<string, [Chemical, number]>) {
     let calculatedEnthalpy: number = 0;
@@ -50,3 +51,4 @@ export function addReactions(rxn1: Reaction, rxn2: Reaction) {
     // newReaction.setS(rxn1.getS() + rxn2.getS());
     return newReaction;
 }
+
