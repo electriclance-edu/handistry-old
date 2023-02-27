@@ -40,7 +40,7 @@ export function calculateEquilibriumK(stdGibbsEnergy: number) {
 
 export function addReactions(rxn1: Reaction, rxn2: Reaction) {
     let newReaction: Reaction = new Reaction(
-        rxn1.getName() + ' + ' + rxn2.getName(),
+        rxn1.getName() + " + " + rxn2.getName(),
         addStoichChemicalMap(rxn1.getReactants(), rxn2.getReactants()),
         addStoichChemicalMap(rxn1.getProducts(), rxn2.getProducts()),
         298.15,
