@@ -36,6 +36,7 @@ console.log(trial_add_reaction.getProducts());
 //updating mixture tests
 let trial_mixture_chemicals = new Map<string, Chemical>;
 let trial_mixture = new Mixture(trial_mixture_chemicals, 0); //-> this line causes errors (fix)
+console.log(trial_mixture.getChemicals());
 let test_chemical: Chemical = { //testing autoionization propagation of water in Mixture object
         "name": "L. water",
         "formula": "H2O",
@@ -48,7 +49,6 @@ let test_chemical: Chemical = { //testing autoionization propagation of water in
 };
 trial_mixture.updateChemicals(test_chemical, 100/1000); //volume in liters
 console.log("Test D-1: mixture before reaction");
-console.log(trial_mixture);
 console.log(trial_mixture.getChemicals());
 
 console.log("Test D-1: mixture after reaction");
@@ -57,7 +57,7 @@ let k: Reaction = trial_mixture.searchReactions();
 console.log("found this reaction:");
 console.log(k);
 trial_mixture.reactChemicals(k);
-console.log(trial_mixture);
+console.log(trial_mixture.getChemicals());
 
 
 //-------END OF TESTING------

@@ -17,7 +17,7 @@ export class Mixture {
     }
     
     // METHODS
-    public updateChemicals(new_chemical: Chemical, v: number): void { // use by invoking Mixture.setChemicals()
+    public updateChemicals(new_chemical: Chemical, v: number): void { 
 
         if (this.chemicals.get(new_chemical.name) === undefined) {
             this.chemicals.set(new_chemical.formula, new_chemical);            
@@ -75,10 +75,12 @@ export class Mixture {
             return k_numerator - mixture_reaction.getK()*k_denominator; //eq expression - k_value
         }
 
-        function f(x: number) {return (x-1) * (x+2);}
-        function fp (x: number) { return (x - 1) + (x + 2); }
+        function f(x: number) {return Math.pow(x, 2) - 1;}
 
-        let moles_x = nr(k_equation, 0);
+        let moles_x = nr(f,0, {
+            //"epsilon": 10000,
+            "verbose": true,
+        });
         console.log("moles_x: " + moles_x);
 
         mixture_reaction.getProducts().forEach((value: [Chemical, number], key: string) => {

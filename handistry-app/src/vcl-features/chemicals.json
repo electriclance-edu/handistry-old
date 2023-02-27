@@ -25,5 +25,14 @@
         "charge": -1,
         "enthalpyForm": -229.94,
         "entropyForm": -10.54
+    },
+    {
+        "name": "Aq. sodium ion",
+        "formula": "Na-",
+        "phase": "aq",
+        "molarMass": 22.9898,
+        "charge": 1,
+        "enthalpyForm": -241.9,
+        "entropyForm": 99
     }
 ]
