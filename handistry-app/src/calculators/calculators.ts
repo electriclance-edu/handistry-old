@@ -40,11 +40,11 @@ export function calculateEquilibriumK(stdGibbsEnergy: number) {
 
 export function addReactions(rxn1: Reaction, rxn2: Reaction) {
     let newReaction: Reaction = new Reaction(
-        rxn1.getName() + " + " + rxn2.getName(),
-        addStoichChemicalMap(rxn1.getReactants(), rxn2.getReactants()),
-        addStoichChemicalMap(rxn1.getProducts(), rxn2.getProducts()),
+        window.structuredClone(rxn1.getName()) + " + " + window.structuredClone(rxn2.getName()),
+        addStoichChemicalMap(window.structuredClone(rxn1.getReactants()), window.structuredClone(rxn2.getReactants())),
+        addStoichChemicalMap(window.structuredClone(rxn1.getProducts()), window.structuredClone(rxn2.getProducts())),
         298.15,
-        (rxn1.getEa() + rxn2.getEa())/2 //not accurate, just averaging activation energies
+        (window.structuredClone(rxn1.getEa()) + window.structuredClone(rxn2.getEa()))/2 //not accurate, just averaging activation energies
     );
     // newReaction.setK(rxn1.getK() * rxn2.getK());
     // newReaction.setH(rxn1.getH() + rxn2.getH());

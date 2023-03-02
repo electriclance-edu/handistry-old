@@ -1,7 +1,7 @@
 [
     {
         "name": "L. water",
-        "formula": "H2O",
+        "formula": "H2O(l)",
         "phase": "l",
         "molarMass": 18.015,
         "charge": 0,
@@ -10,7 +10,7 @@
     },
     {
         "name": "Aq. hydronium ion",
-        "formula": "H+",
+        "formula": "H+(aq)",
         "phase": "aq",
         "molarMass": 1.008,
         "charge": 1,
@@ -19,7 +19,7 @@
     },
     {
         "name": "Aq. hydroxide ion",
-        "formula": "OH-",
+        "formula": "OH-(aq)",
         "phase": "aq",
         "molarMass": 17.007,
         "charge": -1,
@@ -28,7 +28,7 @@
     },
     {
         "name": "Aq. sodium ion",
-        "formula": "Na-",
+        "formula": "Na-(aq)",
         "phase": "aq",
         "molarMass": 22.9898,
         "charge": 1,

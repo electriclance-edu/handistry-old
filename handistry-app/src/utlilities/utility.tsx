@@ -26,7 +26,11 @@ export function toStoichChemicalMap(formulaData: string[], stoichData: number[])
 }
 
 export function addStoichChemicalMap(map1: Map<string, [Chemical, number]>, map2: Map<string, [Chemical, number]>) {
-    let newStoichChemicalMap : Map<string, [Chemical, number]> = map1;
+    //let k = window.structuredClone(map1);
+    let newStoichChemicalMap : Map<string, [Chemical, number]> = window.structuredClone(map1);
+    map1.forEach((value: [Chemical, number], key: string) => {
+        newStoichChemicalMap.set(key, value);
+    });
     map2.forEach((value: [Chemical,number], key: string) => {
         if (newStoichChemicalMap.has(key)) {
             //@ts-ignore
@@ -36,5 +40,6 @@ export function addStoichChemicalMap(map1: Map<string, [Chemical, number]>, map2
             newStoichChemicalMap.set(key, value);
         }
     });
+    console.log("newstoichchemicalmap: " + newStoichChemicalMap);
     return newStoichChemicalMap;
 }

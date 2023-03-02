@@ -35,11 +35,11 @@ console.log(trial_add_reaction.getProducts());
 
 //updating mixture tests
 let trial_mixture_chemicals = new Map<string, Chemical>;
-let trial_mixture = new Mixture(trial_mixture_chemicals, 0); //-> this line causes errors (fix)
+let trial_mixture = new Mixture(trial_mixture_chemicals, 0);
 console.log(trial_mixture.getChemicals());
 let test_chemical: Chemical = { //testing autoionization propagation of water in Mixture object
         "name": "L. water",
-        "formula": "H2O",
+        "formula": "H2O(l)",
         "phase": "l",
         "molarMass": 18.015,
         "charge": 0,
@@ -58,7 +58,6 @@ console.log("found this reaction:");
 console.log(k);
 trial_mixture.reactChemicals(k);
 console.log(trial_mixture.getChemicals());
-
 
 //-------END OF TESTING------
 

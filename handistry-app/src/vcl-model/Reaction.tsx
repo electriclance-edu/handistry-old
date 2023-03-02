@@ -6,7 +6,6 @@ export class Reaction {
     private name: string;
     private reactants: Map<string, [Chemical, number]>;
     private products: Map<string, [Chemical, number]>;
-    // private equation: Map<string, number>; 
     private equilibriumK: number;
     private gibbsFreeRxn: number; //standard gibbs free energy
     private enthalpyRxn: number; //standard enthalpy

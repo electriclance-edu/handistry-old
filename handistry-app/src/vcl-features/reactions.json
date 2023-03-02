@@ -1,9 +1,9 @@
 [
     {
         "name": "Autoionization of water",
-        "reactants": ["H2O"],
+        "reactants": ["H2O(l)"],
         "reactantsStoich": [1],
-        "products": ["H+", "OH-"],
+        "products": ["H+(aq)", "OH-(aq)"],
         "productsStoich": [1, 1],
         "K": 1e-14,
         "Trxn": 298,
