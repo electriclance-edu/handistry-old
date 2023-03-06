@@ -1,12 +1,12 @@
 import React from 'react';
 import '../styles/style.css';
 
-type ScreenProps = {
+interface ScreenProps {
   index: number;
   children: React.ReactNode;
 };
 
-function Screen(props: ScreenProps) {
+function Screen(props : ScreenProps) {
   return (
     <div className="screen">
       <div>

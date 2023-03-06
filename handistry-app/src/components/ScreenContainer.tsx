@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/style.css';
 import Screen from './Screen';
+import Glassware from './Glassware';
 
 function ScreenContainer() {
     return (
@@ -12,6 +13,7 @@ function ScreenContainer() {
             <Screen index={1}>
                 <h1>Reaction Table Screen</h1>
                 <p>we are children of screen :D</p>
+                <Glassware/>
             </Screen>
             <Screen index={2}>
                 <h1>Stockroom Screen</h1>
