@@ -7,6 +7,8 @@ Made by Team Handistry (R2-K2-02) from PSHS-MC (Batch 2024).
 ## Technologies Used
 - TypeScript
 - ReactJS
+- Google MediaPipe Hands Solution (GMHS)
+- OpenCV
 
 ## Developers
 |Developer|E-mail Address|GitHub Handle|
