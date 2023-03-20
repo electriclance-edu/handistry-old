@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import '../styles/style.css';
 import GraduationLineGroup from './GraduationLineGroup';
 
@@ -7,7 +7,6 @@ interface GraduatedSideviewProps {
 }
 function GraduatedSideview(props : GraduatedSideviewProps) {
     const [fill, setFill] = useState(30);
-    
     return (
         <div className="GraduatedSideview" onClick={() => {setFill(fill + 3); console.log(fill)}}>
             {
