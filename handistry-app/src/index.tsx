@@ -45,7 +45,8 @@ let test_chemical: Chemical = { //testing autoionization propagation of water in
         "charge": 0,
         "enthalpyForm": -285.83,
         "entropyForm": 69.91,
-        "moles": 5.5509
+        "moles": 5.5509,
+        "color": "rgba(0,0,0,0.5)"
 };
 trial_mixture.updateChemicals(test_chemical, 100/1000); //volume in liters
 console.log("Test D-1: mixture before reaction");

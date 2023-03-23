@@ -6,7 +6,8 @@
         "molarMass": 18.015,
         "charge": 0,
         "enthalpyForm": -285.83,
-        "entropyForm": 69.91
+        "entropyForm": 69.91,
+        "color": "rgba(48, 217, 255, 0.5)"
     },
     {
         "name": "Aq. hydronium ion",
@@ -15,7 +16,8 @@
         "molarMass": 1.008,
         "charge": 1,
         "enthalpyForm": 0,
-        "entropyForm": 0
+        "entropyForm": 0,
+        "color": "rgba()"
     },
     {
         "name": "Aq. hydroxide ion",
@@ -24,7 +26,8 @@
         "molarMass": 17.007,
         "charge": -1,
         "enthalpyForm": -229.94,
-        "entropyForm": -10.54
+        "entropyForm": -10.54,
+        "color": "rgba()"
     },
     {
         "name": "Aq. sodium ion",
@@ -33,6 +36,7 @@
         "molarMass": 22.9898,
         "charge": 1,
         "enthalpyForm": -241.9,
-        "entropyForm": 99
+        "entropyForm": 99,
+        "color": "rgba()"
     }
 ]

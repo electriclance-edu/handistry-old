@@ -146,6 +146,7 @@ GLASSWARE TAGS
 .Glassware {
     --glasswareWidth: calc(var(--glasswareHeight) * (116.7/200));
     --glasswareHeight: 300px;
+    --color:orange;
     width:var(--glasswareWidth);
     height:var(--glasswareHeight);
     background-color:var(--color-EquipmentFill);
@@ -154,6 +155,9 @@ GLASSWARE TAGS
     transform:rotate(calc(var(--tilt) * 1deg));
     -webkit-mask-image:url(../resources/img/erlenmeyerFlask-mask.png);
     -webkit-mask-size:contain;
+    left:50%; /*DEBUG*/
+    top:50%; /*DEBUG*/
+    transform:translate(-50%,-50%); /*DEBUG*/
 }
 .glassware-image {
     width:var(--glasswareWidth);
@@ -178,7 +182,7 @@ GLASSWARE TAGS
     bottom:0;
     left:0;
     /* transform:rotate(calc(-1 * var(--tilt) * 1deg)); */
-    background-color:orange;
+    background-color:var(--color);
     position:absolute;
     z-index:-1;
 }
@@ -224,8 +228,6 @@ SCREEN TAGS
     width:100%;
     height:100%;
     position:absolute;
-    left:0;
-    top:0;
 }
 .reactionTable {
     width:130vw;

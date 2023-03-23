@@ -32,6 +32,11 @@ export class Mixture {
         this.volume += v;
     }
 
+    public calculateColor() {
+        let color = this.chemicals.entries().next().value[1].color;
+        return color;
+    }
+
     public searchReactions() {
         let overall_reaction: Reaction | null = null;
         REACTION_LIST.forEach((reaction) => {
@@ -102,7 +107,8 @@ export class Mixture {
                 "charge": window.structuredClone(value[0].charge),
                 "enthalpyForm": window.structuredClone(value[0].enthalpyForm),
                 "entropyForm": window.structuredClone(value[0].entropyForm),
-                "moles": window.structuredClone(value[1]) * moles_x
+                "moles": window.structuredClone(value[1]) * moles_x,
+                "color": window.structuredClone(value[0].color)
             }
             this.updateChemicals(added_product, 0);
         });
@@ -115,7 +121,8 @@ export class Mixture {
                 "charge": window.structuredClone(value[0].charge),
                 "enthalpyForm": window.structuredClone(value[0].enthalpyForm),
                 "entropyForm": window.structuredClone(value[0].entropyForm),
-                "moles": window.structuredClone(-value[1]) * moles_x
+                "moles": window.structuredClone(-value[1]) * moles_x,
+                "color": window.structuredClone(value[0].color)
             }
             this.updateChemicals(added_reactant, 0);
         });

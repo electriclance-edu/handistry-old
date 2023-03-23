@@ -11,6 +11,7 @@ export class Glassware extends Equipment{
     // CONSTRUCTOR
     public constructor(name: string,
                        spritePath: string,
+                       maskPath: string,
                        maxCap: number, 
                        mixture: Mixture, 
                        transferMethod: string) {
