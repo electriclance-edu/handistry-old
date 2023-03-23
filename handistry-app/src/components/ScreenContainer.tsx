@@ -11,12 +11,24 @@ function ScreenContainer() {
     const [screen, setScreen] = useState(0);
 
     const ScreenContainerStyle = {"--screen": screen} as React.CSSProperties;
+    const CurrentExpName: string = "Titration of Acetic Acid";
 
     return (
         <div className="ScreenContainer" style={ScreenContainerStyle}>
             <Screen index={0}>
-                <h1>Menu Screen</h1>
-                <p>we are children of screen :D</p>
+                <div className="MenuScreen">
+                    <div className="MenuScreen-info">
+                        <div className="MenuScreen-logo"></div>
+                        <div className="MenuScreen-box">
+                            <h1 className="MenuScreen-box-title">Handistry</h1>
+                            <h2 className="MenuScreen-box-subtitle">chemistry at your fingertips</h2>
+                        </div>
+                    </div>
+                    <div className="MenuScreen-currentExp">
+                        <div className="MenuScreen-currentExp-label">Current Experiment:</div>
+                        <div className="MenuScreen-currentExp-name">{CurrentExpName}</div>
+                    </div>
+                </div>
             </Screen>
             <Screen index={1}>
                 <h1>Reaction Table Screen</h1>

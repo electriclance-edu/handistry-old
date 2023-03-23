@@ -224,6 +224,55 @@ SCREEN TAGS
 .ToNextScreen {
     right:0;
 }
+.MenuScreen {
+    height: 100vh;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+.MenuScreen-info {
+    display: flex;
+    flex-direction: row;
+}
+.MenuScreen-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+    width: 33%;
+}
+.MenuScreen-box-title {
+    font-size: 3em;
+    color: #1f2051;
+}
+.MenuScreen-box-subtitle {
+    font-size: 1.5em;
+    color: #757070
+}
+.MenuScreen-logo {
+    width: 150px;
+    height: 200px;
+    background-image: url("../resources/img/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.MenuScreen-currentExp {
+    margin-left: 180px; /* change based on width of MenuScreen-logo and margin-left of MenuScreen-box*/
+    font-size: 1.5em;
+    margin-top: 30px;
+}
+.MenuScreen-currentExp-label {
+    font-size: inherit;
+    color: #aeabab
+}
+.MenuScreen-currentExp-name {
+    font-size: inherit;
+    padding-left: 30px;
+}
 .GlasswareContainer {
     width:100%;
     height:100%;
