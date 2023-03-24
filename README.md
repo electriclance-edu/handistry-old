@@ -8,6 +8,8 @@ Made by Team Handistry (R2-K2-02) from PSHS-MC (Batch 2024).
 - TypeScript
 - ReactJS
 - Google MediaPipe Hands Solution (GMHS)
+- Google MediaPipe Gesture Recognizer (GMGR)
+- Google MediaPipe Model Maker (GMMM)
 - OpenCV
 
 ## Developers

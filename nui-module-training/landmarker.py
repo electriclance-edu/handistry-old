@@ -1,17 +1,25 @@
+#----------IMPORTS------------#
 import mediapipe as mp
 import numpy as np
 import cv2
+import csv
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from PIL import Image
 from mediapipe.framework.formats import landmark_pb2
 from mediapipe import solutions
 
+#----------WORLD OPTIONS------------#
 BaseOptions = mp.tasks.BaseOptions
 HandLandmarker = mp.tasks.vision.HandLandmarker
 HandLandmarkerOptions = mp.tasks.vision.HandLandmarkerOptions
 VisionRunningMode = mp.tasks.vision.RunningMode
+debugging = False
+visualizing = False
+csv_generating = False
+frame_generating = True
 
+#----------CUSTOM UTILITY FUNCTIONS------------#
 def draw_landmarks_on_image(rgb_image, detection_result):
     MARGIN = 10  # pixels
     FONT_SIZE = 1
@@ -52,86 +60,84 @@ def draw_landmarks_on_image(rgb_image, detection_result):
 
     return annotated_image
 
-# if not os.path.exists('nui-module-training/hand_landmarker.task'):
-#     print('File does not exist')
-# else:
-#     print("yes")
+if debugging:
+    if not os.path.exists('nui-module-training/hand_landmarker.task'):
+        print('File does not exist')
+    else:
+        print("yes")
 
-# Create a hand landmarker instance with the video mode:
+#----------CREATING HAND LANDMARKER INSTANCE (IMAGE MODE)------------#
 options = HandLandmarkerOptions(
     base_options=BaseOptions(model_asset_path='nui-module-training/hand_landmarker.task'),
     running_mode=VisionRunningMode.IMAGE)
 
-with HandLandmarker.create_from_options(options) as landmarker:
-    test_file = open("nui-module-training/data/test_data_vid-with_buffer_frames.txt", "w")
+#----------HAND LANDMARK DATA GENERATION FUNCTION------------#
+def generate_landmark_data(video_name, gesture_label):
+    with HandLandmarker.create_from_options(options) as landmarker:
+        # Intializing video file path and data file
+        video_file_path = "nui-module-training/videos/%s.mp4" % (video_name)
+        if csv_generating:
+            data_file = open("nui-module-training/generated-data/%s.csv" % (video_name), "w")
+            csv_writer = csv.writer(data_file)
 
-    cap = cv2.VideoCapture("nui-module-training/video.mp4")
-    fps = cap.get(cv2.CAP_PROP_POS_MSEC)
-    # print(type(fps))
-    success, img = cap.read()
-    # np_img = np.copy(img)
-    fno = 0
-    sample_rate = 1
-    if success:
-        print("Video successfully loaded. Now proceeding to extraction of hand gesture data.")
-        # print(type(img.data))
-    while success:
-        # print("success")
-        if fno % sample_rate == 0:
-            cv2.imwrite('nui-module-training/buffer_image.jpg', img)
-            # mp_image_vid = mp.Image(image_format=mp.ImageFormat.SRGB, data=img)
-            mp_image_vid = mp.Image.create_from_file('nui-module-training/buffer_image.jpg')
-            result_vid = landmarker.detect(mp_image_vid)
-
-            # mp_image_img = mp.Image.create_from_file('nui-module-training/hand.png')
-            # img_file = cv2.imread("nui-module-training/hand.png")
-            # mp_image_img_file = mp.Image(image_format=mp.ImageFormat.SRGB, data=img_file)
-            # result_img = landmarker.detect(mp_image_img_file)
-
-            # cv2.imwrite('nui-module-training/non-mp_color_img_SRGBA.jpg', img)
-            # cv2.imshow("image", img)
-            # cv2.waitKey()
-
-            # print(fno, "frame mark", fps)
-            # print(mp_image_img.numpy_view())
-            # cv2.imwrite('nui-module-training/test-img-encoded/color_img.jpg', mp_image_img.numpy_view())
-            # cv2.imshow("mp_image_img", mp_image_img.numpy_view())
-            # cv2.waitKey()
-            # print("==================img/vid arrays divider===============")
-            # print(mp_image_vid.numpy_view())
-            # cv2.imwrite('nui-module-training/color_vid_frame_SRGB.jpg', mp_image_vid.numpy_view())
-            # cv2.imshow("mp_image_vid", mp_image_vid.numpy_view())
-            # cv2.waitKey()
-
-
-            # print(hand_landmarker_vid)
-            # print(result_vid)
-            annotate_array = {'landmark': list()}
-            for i in result_vid.hand_landmarks:
-                test_file.write(str(len(i)) + ' \n')
-                for j in i:
-                    test_file.write(j.__repr__() + '\n')
-                    # cv2.circle(img, (int(j.x * img.shape[1]), int(j.y * img.shape[0])), 10, (255, 255, 0), 2)
-            # cv2.imshow('Image', img)
-            # cv2.waitKey(0)
-
-            # annotated_image = draw_landmarks_on_image(img, result_vid) #does not seem to be updated for new data structure of detection results
-            # cv2.imshow('annotated image', annotated_image)
-            # cv2.destroyAllWindows()
-            # cv2.waitKey()
-
-            #frame buffering
-            # if fno >= 30:
-            #     break
-
-            #monitoring frame progress
-            if fno % 100 == 0:
-                print(fno, "frames so far")
-
-        # read next frame
-        success, img = cap.read()
+        # Accessing each frame in the 
+        cap = cv2.VideoCapture(video_file_path)
         fps = cap.get(cv2.CAP_PROP_POS_MSEC)
+        success, img = cap.read()
+        frame_no = 0
+        sample_rate = 5
         if success:
-            fno += 1
-    
-    test_file.close()
+            print("Video %s.mp4 successfully loaded. Now proceeding to extraction of hand gesture data." % video_name)
+        while success:
+            if frame_no % sample_rate == 0:
+                # Using a temporary .jpg version of the video frame to generate mp.Image()
+
+                if csv_generating:
+                    cv2.imwrite('nui-module-training/buffer_image.jpg', img)
+                    mp_frame = mp.Image.create_from_file('nui-module-training/buffer_image.jpg')
+                    detection_result = landmarker.detect(mp_frame)
+
+                if visualizing:
+                    print(mp_frame.numpy_view())
+                    annotated_image = draw_landmarks_on_image(img, detection_result) #does not seem to be updated for new data structure of detection results
+                    cv2.imshow('annotated image', annotated_image)
+                    cv2.waitKey()
+
+                if csv_generating:
+                    frame_data = []
+                    for keypoints in detection_result.hand_landmarks:
+                        for keypoint in keypoints:
+                            keypoint_position = str(keypoint.x) + ' ' + str(keypoint.y) + ' ' + str(keypoint.z)
+                            frame_data.append(keypoint_position)
+                    frame_data.append(gesture_label)
+                    csv_writer.writerow(frame_data)
+
+                #run to generate frames for gesture recognition model training dataset
+                if frame_generating:
+                    frame_file_path = "nui-module-training/frames/%s/%s%s.jpg" % (gesture_label, video_name, str(frame_no))
+                    cv2.imwrite(frame_file_path, img)
+
+                # Frame cap (debugging mode)
+                if frame_no >= 30 and visualizing:
+                    break
+
+                # Progress monitoring
+                if frame_no % 50 == 0:
+                    print(frame_no, "frames so far")
+
+            # read next frame
+            success, img = cap.read()
+            fps = cap.get(cv2.CAP_PROP_POS_MSEC)
+            if success:
+                frame_no += 1
+        
+        if csv_generating:
+            data_file.close()
+
+#----------ITERATING THROUGH VIDEOS------------#
+with open("nui-module-training/videos/video_names.txt") as video_names_file:
+    for line in video_names_file:
+        video_name, label = map(str, line.strip().split())
+        generate_landmark_data(video_name, label)
+
+

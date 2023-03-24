@@ -1,0 +1,2 @@
+test closed_hand
+none none
