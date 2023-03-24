@@ -1,13 +1,16 @@
 {
   "files": {
-    "main.css": "/handistry/static/css/main.852f108b.css",
-    "main.js": "/handistry/static/js/main.4cd79fa1.js",
+    "main.css": "/handistry/static/css/main.79418fe8.css",
+    "main.js": "/handistry/static/js/main.fb6c6278.js",
+    "static/media/erlenmeyerFlask.png": "/handistry/static/media/erlenmeyerFlask.d7734b46c43163c3b210.png",
+    "static/media/erlenmeyerFlask-mask.png": "/handistry/static/media/erlenmeyerFlask-mask.7aea6aaff7dede0e5c0d.png",
+    "static/media/logo.png": "/handistry/static/media/logo.c567a6fc80782887d874.png",
     "index.html": "/handistry/index.html",
-    "main.852f108b.css.map": "/handistry/static/css/main.852f108b.css.map",
-    "main.4cd79fa1.js.map": "/handistry/static/js/main.4cd79fa1.js.map"
+    "main.79418fe8.css.map": "/handistry/static/css/main.79418fe8.css.map",
+    "main.fb6c6278.js.map": "/handistry/static/js/main.fb6c6278.js.map"
   },
   "entrypoints": [
-    "static/css/main.852f108b.css",
-    "static/js/main.4cd79fa1.js"
+    "static/css/main.79418fe8.css",
+    "static/js/main.fb6c6278.js"
   ]
 }
