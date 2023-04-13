@@ -35,8 +35,22 @@ function ScreenContainer() {
                 <p>we are children of screen :D</p>
             </Screen>
             <Screen index={2}>
-                <h1>Stockroom Screen</h1>
-                <p>we are children of screen :D</p>
+                <div className="StockroomScreen">
+                    <div className="Stockroom">
+                        <div className="Stockroom-shelf">
+                            <div className="Stockroom-shelf-top"></div>
+                        </div>
+                        <div className="Stockroom-shelf">
+                            <div className="Stockroom-shelf-top"></div>
+                        </div>
+                        <div className="Stockroom-shelf">
+                            <div className="Stockroom-shelf-top"></div>
+                        </div>
+                        <div className="Stockroom-shelf">
+                            <div className="Stockroom-shelf-top"></div>
+                        </div>
+                    </div>
+                </div>
             </Screen>
             <div className="reactionTable">
                 <div className="reactionTable-top"></div>
