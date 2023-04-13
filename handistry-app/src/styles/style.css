@@ -360,6 +360,12 @@ SCREEN TAGS
     transform:rotateX(-2deg) translatex(-50%);
     z-index:-2;
 }
+
+.equipment-generator {
+    position: absolute;
+    z-index: 100;
+}
+
 /*-----------
 CHEMICAL TAGS
 -----------*/

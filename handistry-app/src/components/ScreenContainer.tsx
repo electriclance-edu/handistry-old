@@ -38,6 +38,29 @@ function ScreenContainer() {
                 <div className="StockroomScreen">
                     <div className="Stockroom">
                         <div className="Stockroom-shelf">
+                            //list reagents here
+                            <div>
+                                <div className="equipment-generator">
+                                    <Glassware
+                                        data={
+                                            new GlasswareModel(
+                                                "erlenmeyerFlask",
+                                                "../resources/img/erlenmeyerFlask.png",
+                                                "../resources/img/erlenmeyerFlask-mask.png",
+                                                1000,
+                                                new Mixture(
+                                                    //@ts-ignore
+                                                    new Map(
+                                                        [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
+                                                    ),
+                                                    500
+                                                ),
+                                                "beaker"
+                                            )
+                                        }
+                                    />
+                                </div>
+                            </div>
                             <div className="Stockroom-shelf-top"></div>
                         </div>
                         <div className="Stockroom-shelf">
