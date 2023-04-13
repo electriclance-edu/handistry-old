@@ -82,7 +82,7 @@ function ScreenContainer() {
             </div>
             <div className="GlasswareContainer">
                 <Draggable>
-                    <Glassware
+                    {/* <Glassware
                         data={
                             new GlasswareModel(
                                 "erlenmeyerFlask",
@@ -99,11 +99,12 @@ function ScreenContainer() {
                                 "beaker"
                             )
                         }
-                    />
+                    /> */}
+                    <div className="dummy"></div>
                 </Draggable>
             </div>
-            <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {setScreen(clamp(screen - 1, 0, 2))}}>To Previous Screen</div>
-            <div className="ToNextScreen flex-centered" onMouseOver={(e) => {setScreen(clamp(screen + 1, 0, 2))}}>To Next Screen</div>
+            <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {setScreen(clamp(screen - 1, 0, 2))}}></div>
+            <div className="ToNextScreen flex-centered" onMouseOver={(e) => {setScreen(clamp(screen + 1, 0, 2))}}></div>
         </div>
     );
 }

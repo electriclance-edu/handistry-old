@@ -213,7 +213,7 @@ SCREEN TAGS
 .ToPreviousScreen, .ToNextScreen {
     width:5vw;
     height:60vh;
-    background-color:rgba(225,45,120,0.3);
+    /* background-color:rgba(225,45,120,0.3); */
     position:fixed;
     top:50%;
     transform:translatey(-50%);
@@ -403,4 +403,15 @@ TOOLTIP TAGS
     top:calc(100% + var(--tooltipDist));
     opacity:0;
     transition:0.2s;
+}
+
+
+
+
+
+/* debug */
+.dummy {
+    width:50px;
+    height:50px;
+    background-color:red;
 }
