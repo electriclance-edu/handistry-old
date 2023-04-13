@@ -5,40 +5,40 @@ interface DraggableProps {
 }
 
 function Draggable(props : DraggableProps) {
-    const [movementManager, setMovementManager] = useState(() => {});
-    const [position, setPosition] = useState({
-        x:0,
-        y:0
-    });
+    // const [movementManager, setMovementManager] = useState(() => {});
+    // const [position, setPosition] = useState({
+    //     x:0,
+    //     y:0
+    // });
 
-    const setDraggable = (elem : any, state : boolean) => {
-        if (state) {
-            //@ts-ignore
-            setMovementManager(manageDragMove);
-        } else {
-            setMovementManager(() => {});
-        }
-    }
-    const manageDragMove = (e : MouseEvent) => {
-        e = e || window.event;
-        e.preventDefault();
+    // const setDraggable = (elem : any, state : boolean) => {
+    //     if (state) {
+    //         //@ts-ignore
+    //         setMovementManager(manageDragMove);
+    //     } else {
+    //         setMovementManager(() => {});
+    //     }
+    // }
+    // const manageDragMove = (e : MouseEvent) => {
+    //     e = e || window.event;
+    //     e.preventDefault();
 
-        console.log(e.clientX);
-    }
+    //     console.log(e.clientX);
+    // }
 
-    const DraggableStyle = {
-        "--x": position.x,
-        "--y": position.y
-    } as React.CSSProperties;
+    // const DraggableStyle = {
+    //     "--x": position.x,
+    //     "--y": position.y
+    // } as React.CSSProperties;
 
     return (
         <div className="Draggable" 
             //@ts-ignore
-            onMouseDown={() => {setDraggable(this, true)}}
+            // onMouseDown={() => {setDraggable(this, true)}}
             //@ts-ignore
-            onMouseMove={movementManager}
+            onAbort={console.log("bosldfjhhdf")}
             //@ts-ignore
-            onMouseUp={() => {setDraggable(this, false)}}
+            // onMouseUp={() => {setDraggable(this, false)}}
         >
             {props.children}
         </div>
