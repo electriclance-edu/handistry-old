@@ -3,6 +3,7 @@ import '../styles/style.css';
 import Screen from './Screen';
 import Glassware from './Glassware';
 import Draggable from './Draggable';
+import GlasswareContainer from './GlasswareContainer';
 import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
 import {Mixture} from '../vcl-model/Mixture';
 import CHEMICAL_LIST from '../vcl-features/LoadChemicals';
@@ -57,9 +58,9 @@ function ScreenContainer() {
                 <div className="reactionTable-top-border"></div>
                 <div className="reactionTable-bottom"></div>
             </div>
-            <div className="GlasswareContainer">
+            <GlasswareContainer>
                 <Draggable>
-                    {/* <Glassware
+                    <Glassware
                         data={
                             new GlasswareModel(
                                 "erlenmeyerFlask",
@@ -76,10 +77,9 @@ function ScreenContainer() {
                                 "beaker"
                             )
                         }
-                    /> */}
-                    <div className="dummy"></div>
+                    />
                 </Draggable>
-            </div>
+            </GlasswareContainer>
             <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {setScreen(clamp(screen - 1, 0, 2))}}></div>
             <div className="ToNextScreen flex-centered" onMouseOver={(e) => {setScreen(clamp(screen + 1, 0, 2))}}></div>
         </div>
