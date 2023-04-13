@@ -5,40 +5,43 @@ interface DraggableProps {
 }
 
 function Draggable(props : DraggableProps) {
-    // const [movementManager, setMovementManager] = useState(() => {});
-    // const [position, setPosition] = useState({
-    //     x:0,
-    //     y:0
-    // });
+    const [position, setPosition] = useState({
+        x:0,
+        y:0
+    });
 
-    // const setDraggable = (elem : any, state : boolean) => {
-    //     if (state) {
-    //         //@ts-ignore
-    //         setMovementManager(manageDragMove);
-    //     } else {
-    //         setMovementManager(() => {});
-    //     }
-    // }
-    // const manageDragMove = (e : MouseEvent) => {
-    //     e = e || window.event;
-    //     e.preventDefault();
+    const setDraggable = (e : MouseEvent, elem : any, state : boolean) => {
+        console.log("setDraggable: " + state);
+        if (state) {
+            //@ts-ignore
+            e.target.addEventListener("mousemove", manageDragMove);
+        } else {
+            //@ts-ignore
+            e.target.removeEventListener("mousemove", manageDragMove);
+        }
+    }
+    const manageDragMove = (e : MouseEvent) => {
+        e = e || window.event;
+        e.preventDefault();
 
-    //     console.log(e.clientX);
-    // }
+        setPosition({
+            x:e.clientX,
+            y:e.clientY 
+        });
+    }
 
-    // const DraggableStyle = {
-    //     "--x": position.x,
-    //     "--y": position.y
-    // } as React.CSSProperties;
+    const DraggableStyle = {
+        "--x": position.x,
+        "--y": position.y
+    } as React.CSSProperties;
 
     return (
-        <div className="Draggable" 
+        <div className="draggable" 
             //@ts-ignore
-            // onMouseDown={() => {setDraggable(this, true)}}
+            onMouseDown={(e) => {setDraggable(e, this, true)}}
             //@ts-ignore
-            onAbort={console.log("bosldfjhhdf")}
-            //@ts-ignore
-            // onMouseUp={() => {setDraggable(this, false)}}
+            onMouseUp={(e) => {setDraggable(e, this, false)}}
+            style={DraggableStyle}
         >
             {props.children}
         </div>

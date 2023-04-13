@@ -155,9 +155,6 @@ GLASSWARE TAGS
     transform:rotate(calc(var(--tilt) * 1deg));
     -webkit-mask-image:url(../resources/img/erlenmeyerFlask-mask.png);
     -webkit-mask-size:contain;
-    left:50%; /*DEBUG*/
-    top:50%; /*DEBUG*/
-    transform:translate(-50%,-50%); /*DEBUG*/
 }
 .glassware-image {
     width:var(--glasswareWidth);
@@ -190,6 +187,15 @@ GLASSWARE TAGS
 CHEMICAL TAGS
 -----------*/
 
+/*-----------
+DRAGGABLE TAGS
+-----------*/
+.draggable {
+    left:calc((var(--x) * 1px) + (var(--screen) * 100vw));
+    top:calc((var(--y) * 1px));
+    transform:translate(-50%,-50%);
+    position:absolute;
+}
 /*-----------
 SCREEN TAGS
 -----------*/
@@ -408,9 +414,10 @@ TOOLTIP TAGS
 
 
 
-/*----------
- DEBUG TAGS
-----------*/
+
+/*-----------
+DEBUG TAGS
+-----------*/
 .dummy {
     width:50px;
     height:50px;
