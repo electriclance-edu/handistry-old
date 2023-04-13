@@ -408,8 +408,9 @@ TOOLTIP TAGS
 
 
 
-
-/* debug */
+/*----------
+ DEBUG TAGS
+----------*/
 .dummy {
     width:50px;
     height:50px;
