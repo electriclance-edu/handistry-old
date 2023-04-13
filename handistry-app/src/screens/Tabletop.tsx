@@ -2,7 +2,11 @@
    IMPORTS
 ------------*/
 import React from 'react';
+import CHEMICAL_LIST from '../vcl-features/LoadChemicals';
 import Draggable from '../components/Draggable';
+import Glassware from '../components/Glassware';
+import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
+import { Mixture } from '../vcl-model/Mixture';
 import '../styles/style.css';
 
 // The Tabletop screen which acts as main working area.
@@ -13,29 +17,7 @@ function Tabletop() {
             <p>we are children of screen :D</p>
             <p>Hello</p>
 
-            <div className="GlasswareContainer">
-                <Draggable>
-                    {/* <Glassware
-                        data={
-                            new GlasswareModel(
-                                "erlenmeyerFlask",
-                                "../resources/img/erlenmeyerFlask.png",
-                                "../resources/img/erlenmeyerFlask-mask.png",
-                                1000,
-                                new Mixture(
-                                    //@ts-ignore
-                                    new Map(
-                                        [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
-                                    ),
-                                    500
-                                ),
-                                "beaker"
-                            )
-                        }
-                    /> */}
-                    <div className="dummy"></div>
-                </Draggable>
-            </div>
+            
         </div>
     );
 }

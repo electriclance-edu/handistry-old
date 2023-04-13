@@ -74,6 +74,7 @@ ABOVE-SCREEN TAGS
     text-align:left;
     padding:15px;
     z-index:100;
+    pointer-events: none;
 }
 /*-----------
 GRADUATION SIDEVIEW TAGS
@@ -94,6 +95,7 @@ GRADUATION SIDEVIEW TAGS
     overflow:hidden;
     background-color:var(--color-EquipmentFill);
     box-shadow:0px 0px 5px rgba(0,0,0,0.5);
+    pointer-events: none;
 }
 .GraduationLineGroup {
     display:flex;
