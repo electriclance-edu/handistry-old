@@ -1,7 +1,7 @@
 /*------------
    IMPORTS
 ------------*/
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 interface DraggableProps {
     children: React.ReactNode;
@@ -13,18 +13,6 @@ Dragging occurs when mouse is held and moved.
 Dragging stops when mouse is released.
 */
 function Draggable(props : DraggableProps) {
-    const [position, setPosition] = useState({
-        x: 0,
-        y: 0
-    });
-
-    const setDraggable = (e : MouseEvent, elem : any, state : boolean) => {
-        console.log("setDraggable: " + state);
-        //@ts-ignore
-        if (state) e.target.addEventListener("mousemove", manageDragMove);
-        //@ts-ignore
-        else e.target.removeEventListener("mousemove", manageDragMove);
-    }
     const manageDragMove = (e : MouseEvent) => {
         e = e || window.event;
         e.preventDefault();
@@ -33,6 +21,24 @@ function Draggable(props : DraggableProps) {
             x: e.clientX,
             y: e.clientY 
         });
+    }
+    
+    const [position, setPosition] = useState({
+        x: 0,
+        y: 0
+    });
+
+    const callback = useCallback(manageDragMove, [])
+
+    const setDraggable = (e : MouseEvent, elem : any, state : boolean) => {
+        console.log("setDraggable: " + state);
+        //@ts-ignore
+        if (state) document.addEventListener("mousemove", callback, true);
+        //@ts-ignore
+        else {
+            console.log(state + "help")
+            document.removeEventListener("mousemove", callback, true);
+        }
     }
 
     const DraggableStyle = {

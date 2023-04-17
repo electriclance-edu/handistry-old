@@ -61,6 +61,26 @@ function ScreenContainer() {
                         }
                     />
                 </Draggable>
+                <Draggable>
+                    <Glassware
+                        data={
+                            new GlasswareModel(
+                                "erlenmeyerFlask",
+                                "../resources/img/erlenmeyerFlask.png",
+                                "../resources/img/erlenmeyerFlask-mask.png",
+                                1000,
+                                new Mixture(
+                                    //@ts-ignore
+                                    new Map(
+                                        [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
+                                    ),
+                                    500
+                                ),
+                                "beaker"
+                            )
+                        }
+                    />
+                </Draggable>
             </div>
             <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {
                 setScreen(clamp(screen - 1, 0, 2))}
