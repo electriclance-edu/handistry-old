@@ -2,15 +2,23 @@
    IMPORTS
 ------------*/
 import React, { useState } from 'react';
-import '../styles/style.css';
 import Draggable from './Draggable';
 import Screen from './Screen';
 import MainMenu from '../screens/Menu';
 import Tabletop from '../screens/Tabletop';
 import Stockroom from '../screens/Stockroom';
+import '../styles/style.css';
+// TEMPORARY IMPORTS
+import CHEMICAL_LIST from '../vcl-features/LoadChemicals';
+import Glassware from '../components/Glassware';
+import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
+import { Mixture } from '../vcl-model/Mixture';
 
-// ScreenContainer [300 vw] is a parent container for 3 Screen objects [100vw each]: Menu, Tabletop, and Stockroom.
-// It has two side buttons that has hoverEvent to navigate through these 3 Screen objects
+
+/*
+ScreenContainer [300 vw] is a parent container for 3 Screen objects [100vw each]: Menu, Tabletop, and Stockroom.
+It has two side buttons that has hoverEvent to navigate through these 3 Screen objects
+*/
 function ScreenContainer() {
     const [screen, setScreen] = useState(0);
     const ScreenContainerStyle = {"--screen": screen} as React.CSSProperties;
@@ -30,6 +38,29 @@ function ScreenContainer() {
                 <div className="reactionTable-top"></div>
                 <div className="reactionTable-top-border"></div>
                 <div className="reactionTable-bottom"></div>
+            </div>
+            {/* temporary */}
+            <div className="GlasswareContainer">
+                <Draggable>
+                    <Glassware
+                        data={
+                            new GlasswareModel(
+                                "erlenmeyerFlask",
+                                "../resources/img/erlenmeyerFlask.png",
+                                "../resources/img/erlenmeyerFlask-mask.png",
+                                1000,
+                                new Mixture(
+                                    //@ts-ignore
+                                    new Map(
+                                        [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
+                                    ),
+                                    500
+                                ),
+                                "beaker"
+                            )
+                        }
+                    />
+                </Draggable>
             </div>
             <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {
                 setScreen(clamp(screen - 1, 0, 2))}

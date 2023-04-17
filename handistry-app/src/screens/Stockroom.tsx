@@ -11,12 +11,11 @@ import '../styles/style.css';
 
 function Stockroom() {
     return (
-        <div className="StockroomScreen">
             <div className="Stockroom">
                 <div className="Stockroom-shelf">
-                    //list reagents here
+                    {/* list reagents here */}
                     <div>
-                        <div className="equipment-generator">
+                        <div className="equipmentGenerator">
                             <Glassware
                                 data={
                                     new GlasswareModel(
@@ -49,7 +48,6 @@ function Stockroom() {
                     <div className="Stockroom-shelf-top"></div>
                 </div>
             </div>
-        </div>
     );
 }
 
