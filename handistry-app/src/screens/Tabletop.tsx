@@ -12,12 +12,7 @@ import '../styles/style.css';
 // The Tabletop screen which acts as main working area.
 function Tabletop() {
     return (
-        <div>
-            <h1>Reaction Table Screen</h1>
-            <p>we are children of screen :D</p>
-            <p>Hello</p>
-
-            
+        <div>         
         </div>
     );
 }
