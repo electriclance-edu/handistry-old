@@ -13,6 +13,11 @@ Dragging occurs when mouse is held and moved.
 Dragging stops when mouse is released.
 */
 function Draggable(props : DraggableProps) {
+    const [position, setPosition] = useState({
+        x: 0,
+        y: 0
+    });
+
     const manageDragMove = (e : MouseEvent) => {
         e = e || window.event;
         e.preventDefault();
@@ -22,28 +27,23 @@ function Draggable(props : DraggableProps) {
             y: e.clientY 
         });
     }
-    
-    const [position, setPosition] = useState({
-        x: 0,
-        y: 0
-    });
 
     const callback = useCallback(manageDragMove, [])
 
     const setDraggable = (e : MouseEvent, elem : any, state : boolean) => {
-        console.log("setDraggable: " + state);
+        // console.log("setDraggable: " + state); //un-comment when debugging
         //@ts-ignore
         if (state) document.addEventListener("mousemove", callback, true);
         //@ts-ignore
         else {
-            console.log(state + "help")
+            // console.log(state + "help") //un-comment when debugging
             document.removeEventListener("mousemove", callback, true);
         }
     }
 
     const DraggableStyle = {
         "--x": position.x,
-        "--y": position.y
+        "--y": position.y,
     } as React.CSSProperties;
 
     return (

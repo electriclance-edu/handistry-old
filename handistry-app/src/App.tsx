@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import ScreenContainer from './components/ScreenContainer';
 import GraduatedSideview from './components/GraduatedSideview';
 import ObjectInformation from './components/ObjectInformation';
 
 function App() {
+
   useEffect(() => {
     document.title = "Handistry"
   }, []);
