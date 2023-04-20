@@ -24,8 +24,8 @@ function Draggable(props : DraggableProps) {
     }
     
     const [position, setPosition] = useState({
-        x: 0,
-        y: 0
+        x: 300,
+        y: 300
     });
 
     const callback = useCallback(manageDragMove, [])
