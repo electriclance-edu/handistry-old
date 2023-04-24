@@ -8,6 +8,7 @@ import Screen from './Screen';
 import MainMenu from '../screens/Menu';
 import Tabletop from '../screens/Tabletop';
 import Stockroom from '../screens/Stockroom';
+import GlasswareContainer from './GlasswareContainer';
 import '../styles/style.css';
 // TEMPORARY IMPORTS
 import CHEMICAL_LIST from '../vcl-features/LoadChemicals';
@@ -44,26 +45,6 @@ function ScreenContainer() {
             </div>
             {/* temporary */}
             <div className="GlasswareContainer">
-                {/* {/* <Draggable>
-                    <Glassware
-                        data={
-                            new GlasswareModel(
-                                "erlenmeyerFlask",
-                                "../resources/img/erlenmeyerFlask.png",
-                                "../resources/img/erlenmeyerFlask-mask.png",
-                                1000,
-                                new Mixture(
-                                    //@ts-ignore
-                                    new Map(
-                                        [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
-                                    ),
-                                    500
-                                ),
-                                "beaker"
-                            )
-                        }
-                    />
-                </Draggable> */}
                 <Draggable>
                     <Glassware
                         data={
@@ -84,27 +65,8 @@ function ScreenContainer() {
                         }
                     />
                 </Draggable>
-                {/* <Interactive>
-                    <Glassware
-                        data={
-                            new GlasswareModel(
-                                "erlenmeyerFlask",
-                                "../resources/img/erlenmeyerFlask.png",
-                                "../resources/img/erlenmeyerFlask-mask.png",
-                                1000,
-                                new Mixture(
-                                    //@ts-ignore
-                                    new Map(
-                                        [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
-                                    ),
-                                    500
-                                ),
-                                "beaker"
-                            )
-                        }
-                    />
-                </Interactive> */}
             </div>
+
             <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {
                 setScreen(clamp(screen - 1, 0, 2))}
             }></div>

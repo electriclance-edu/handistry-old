@@ -321,13 +321,24 @@ SCREEN TAGS
     font-size: inherit;
     padding-left: 30px;
 }
+.Tabletop {
+    pointer-events: none;
+}
+.Tabletop * {
+    pointer-events: all;
+}
 .Stockroom {
     width: 78vw;
     height: 100vw;
     position: relative;
     left: 50%;
     transform: translatex(-50%);
-    z-index: -1000;
+    pointer-events: none;
+    /* z-index: -1000000; */
+}
+
+.Stockroom * {
+    pointer-events: all;
 }
 
 /* shelfInd refers to the index of the shelf it is on. 
@@ -344,7 +355,7 @@ SCREEN TAGS
        is hardcoded. */
     top: calc((var(--shelfInd) - 1) * 250px); 
     /* z-index of the shelves (from top to bottom) must be decreasing. */
-    z-index: calc((5 - var(--shelfInd)) * 10);
+    /* z-index: calc((5 - var(--shelfInd)) * 10); */
     perspective:300px;
     perspective-origin:top; 
     pointer-events: none;
@@ -398,6 +409,7 @@ SCREEN TAGS
     transform:translatex(-50%);
     perspective:500px;
     perspective-origin:top;
+    z-index: -1000
 }
 .reactionTable-top {
     --rotation:30deg;

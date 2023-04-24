@@ -14,8 +14,8 @@ Dragging stops when mouse is released.
 */
 function Draggable(props : DraggableProps) {
     const [position, setPosition] = useState({
-        x: 0,
-        y: 0
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2
     });
 
     const manageDragMove = (e : MouseEvent) => {
@@ -31,12 +31,12 @@ function Draggable(props : DraggableProps) {
     const callback = useCallback(manageDragMove, [])
 
     const setDraggable = (e : MouseEvent, elem : any, state : boolean) => {
-        // console.log("setDraggable: " + state); //un-comment when debugging
+        console.log("setDraggable: " + state); //un-comment when debugging
         //@ts-ignore
         if (state) document.addEventListener("mousemove", callback, true);
         //@ts-ignore
         else {
-            // console.log(state + "help") //un-comment when debugging
+            console.log(state + "help") //un-comment when debugging
             document.removeEventListener("mousemove", callback, true);
         }
     }

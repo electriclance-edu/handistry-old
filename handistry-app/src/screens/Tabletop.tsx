@@ -2,57 +2,39 @@
    IMPORTS
 ------------*/
 import React from 'react';
-import CHEMICAL_LIST from '../vcl-features/LoadChemicals';
 import Draggable from '../components/Draggable';
 import Glassware from '../components/Glassware';
 import GlasswareContainer from '../components/GlasswareContainer';
 import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
-import { Mixture } from '../vcl-model/Mixture';
 import '../styles/style.css';
 
-interface EquipmentList {
-    equipments: any[];
-}
-
 // The Tabletop screen which acts as main working area.
-function Tabletop(equipmentList : any) {
-
-    //@ts-ignore
-    var renderedGlassware = equipmentList.equipmentList.map((equipment) => {
-        <div>"Trololololol"</div>
-    });
+function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing in tabletop
 
     return (
-        <div>
+        <div className="Tabletop">
             <div onClick = {() => console.log(equipmentList)}>Check Tabletop EquipmentList</div>
-            <div onClick = {() => console.log(renderedGlassware)}>Check RenderedGlassware</div>
 
-            <GlasswareContainer>
-                {
-                    Array.from(equipmentList.equipmentList, eql => {
-                        console.log("bruh" + eql);
-                        return <Draggable>
-                            <Glassware
-                                data={
-                                    new GlasswareModel(
-                                        "erlenmeyerFlask",
-                                        "../resources/img/erlenmeyerFlask.png",
-                                        "../resources/img/erlenmeyerFlask-mask.png",
-                                        1000,
-                                        new Mixture(
-                                            //@ts-ignore
-                                            new Map(
-                                                [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
-                                            ),
-                                            500
-                                        ),
-                                        "beaker"
-                                    )
-                                }
-                            />
-                        </Draggable>
-                    })
-                }
+            <GlasswareContainer> {/*not the cause of problem*/}
+                {Array.from(equipmentList.equipmentList, eql => { //not the cause of problem
+                    var equipment : any = eql;
+                    // console.log("New object on tabletop" + eql); // un-comment when debugging
+                    // console.log(equipment); // un-comment when debugging
+                    return (<Draggable>
+                        <Glassware
+                            data={
+                                new GlasswareModel(
+                                    equipment.props.data.name,
+                                    equipment.props.data.spritePath,
+                                    equipment.props.data.maskPath,
+                                    equipment.props.data.maxCapacity,
+                                    equipment.props.data.mixture,
+                                    equipment.props.data.transferMethod
+                                )
+                            }
+                        />
+                    </Draggable>);
+                })}
             </GlasswareContainer>
             
             <h1>Reaction Table Screen</h1>

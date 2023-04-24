@@ -8,7 +8,6 @@ import CHEMICAL_LIST from '../vcl-features/LoadChemicals';
 import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
 import {Mixture} from '../vcl-model/Mixture';
 import '../styles/style.css';
-import { add } from '@tensorflow/tfjs';
 
 function Stockroom({ setEquipmentList } : any) {
 
@@ -37,26 +36,31 @@ function Stockroom({ setEquipmentList } : any) {
                 ),
                 "beaker"
             )
-        }
-    />
+        }/>
 
     return (
-        <div className="Stockroom">
-            {/* {equipmentGens2()} */}
+        <div className='Stockroom'>
             <div className="Stockroom-shelf" style={{"--shelfInd": 1} as React.CSSProperties}>
                 <div onClick = {() => addEquipment(glassware1)}>Generate New Thing</div>
                 <div className="Stockroom-shelf-top"></div>
             </div>
-            <div className="Stockroom-shelf" style={{"--shelfInd": 2} as React.CSSProperties}>
-                <div className="Stockroom-shelf-top"></div>
-            </div>
-            <div className="Stockroom-shelf" style={{"--shelfInd": 3} as React.CSSProperties}>
-                <div className="Stockroom-shelf-top"></div>
-            </div>
-            <div className="Stockroom-shelf" style={{"--shelfInd": 4} as React.CSSProperties}>
-                <div className="Stockroom-shelf-top"></div>
-            </div>
         </div>
+        // <div className="Stockroom">
+        //     {/* {equipmentGens2()} */}
+        //     <div className="Stockroom-shelf" style={{"--shelfInd": 1} as React.CSSProperties}>
+        //         <div onClick = {() => console.log("Lmao")}>Generate New Thing</div>
+        //         <div className="Stockroom-shelf-top"></div>
+        //     </div>
+        //     <div className="Stockroom-shelf" style={{"--shelfInd": 2} as React.CSSProperties}>
+        //         <div className="Stockroom-shelf-top"></div>
+        //     </div>
+        //     <div className="Stockroom-shelf" style={{"--shelfInd": 3} as React.CSSProperties}>
+        //         <div className="Stockroom-shelf-top"></div>
+        //     </div>
+        //     <div className="Stockroom-shelf" style={{"--shelfInd": 4} as React.CSSProperties}>
+        //         <div className="Stockroom-shelf-top"></div>
+        //     </div>
+        // </div>
     );
     // return (
     //         <div className="Stockroom">
