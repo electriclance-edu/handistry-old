@@ -28,6 +28,26 @@ function Tabletop(equipmentList : any) {
             <div onClick = {() => console.log(renderedGlassware)}>Check RenderedGlassware</div>
 
             <GlasswareContainer>
+                <Draggable>
+                        <Glassware
+                            data={
+                                new GlasswareModel(
+                                    "erlenmeyerFlask",
+                                    "../resources/img/erlenmeyerFlask.png",
+                                    "../resources/img/erlenmeyerFlask-mask.png",
+                                    1000,
+                                    new Mixture(
+                                        //@ts-ignore
+                                        new Map(
+                                            [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
+                                        ),
+                                        500
+                                    ),
+                                    "beaker"
+                                )
+                            }
+                        />
+                    </Draggable>
                 {
                     Array.from(equipmentList.equipmentList, eql => {
                         console.log("bruh" + eql);
