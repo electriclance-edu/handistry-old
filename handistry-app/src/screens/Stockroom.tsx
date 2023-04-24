@@ -40,7 +40,24 @@ function Stockroom({ setEquipmentList } : any) {
         }
     />
 
-
+    return (
+        <div className="Stockroom">
+            {/* {equipmentGens2()} */}
+            <div className="Stockroom-shelf" style={{"--shelfInd": 1} as React.CSSProperties}>
+                <div onClick = {() => addEquipment(glassware1)}>Generate New Thing</div>
+                <div className="Stockroom-shelf-top"></div>
+            </div>
+            <div className="Stockroom-shelf" style={{"--shelfInd": 2} as React.CSSProperties}>
+                <div className="Stockroom-shelf-top"></div>
+            </div>
+            <div className="Stockroom-shelf" style={{"--shelfInd": 3} as React.CSSProperties}>
+                <div className="Stockroom-shelf-top"></div>
+            </div>
+            <div className="Stockroom-shelf" style={{"--shelfInd": 4} as React.CSSProperties}>
+                <div className="Stockroom-shelf-top"></div>
+            </div>
+        </div>
+    );
     // return (
     //         <div className="Stockroom">
     //             <div className="Stockroom-shelf">
@@ -82,24 +99,6 @@ function Stockroom({ setEquipmentList } : any) {
 // }
 
 // function Stockroom() {
-    return (
-            <div className="Stockroom">
-                {/* {equipmentGens2()} */}
-                <div className="Stockroom-shelf" style={{"--shelfInd": 1} as React.CSSProperties}>
-                    <div onClick = {() => addEquipment(glassware1)}>Generate New Thing</div>
-                    <div className="Stockroom-shelf-top"></div>
-                </div>
-                <div className="Stockroom-shelf" style={{"--shelfInd": 2} as React.CSSProperties}>
-                    <div className="Stockroom-shelf-top"></div>
-                </div>
-                <div className="Stockroom-shelf" style={{"--shelfInd": 3} as React.CSSProperties}>
-                    <div className="Stockroom-shelf-top"></div>
-                </div>
-                <div className="Stockroom-shelf" style={{"--shelfInd": 4} as React.CSSProperties}>
-                    <div className="Stockroom-shelf-top"></div>
-                </div>
-            </div>
-    );
 }
 
 export default Stockroom;

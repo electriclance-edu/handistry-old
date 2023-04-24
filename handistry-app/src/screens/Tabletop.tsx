@@ -28,7 +28,7 @@ function Tabletop(equipmentList : any) {
             <div onClick = {() => console.log(renderedGlassware)}>Check RenderedGlassware</div>
 
             <GlasswareContainer>
-                <Draggable>
+                {/* <Draggable>
                         <Glassware
                             data={
                                 new GlasswareModel(
@@ -47,7 +47,7 @@ function Tabletop(equipmentList : any) {
                                 )
                             }
                         />
-                    </Draggable>
+                    </Draggable> */}
                 {
                     Array.from(equipmentList.equipmentList, eql => {
                         console.log("bruh" + eql);
@@ -74,40 +74,6 @@ function Tabletop(equipmentList : any) {
                     })
                 }
             </GlasswareContainer>
-            {/* {
-                // @ts-ignore
-                // this.state.eql.map((items : any) => {
-                //     <div>
-                //         I'm a new glassware
-                //     </div>
-                // })
-                Array.from(equipmentList, equipment => {
-                    console.log(equipment);
-                    //@ts-ignore
-                    return <Draggable>{equipment.props}</Draggable>;
-                })
-                    // return <Draggable>
-                    //     <Glassware
-                    //         data={
-                    //             new GlasswareModel(
-                    //                 "erlenmeyerFlask",
-                    //                 "../resources/img/erlenmeyerFlask.png",
-                    //                 "../resources/img/erlenmeyerFlask-mask.png",
-                    //                 1000,
-                    //                 new Mixture(
-                    //                     //@ts-ignore
-                    //                     new Map(
-                    //                         [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
-                    //                     ),
-                    //                     500
-                    //                 ),
-                    //                 "beaker"
-                    //             )
-                    //         }
-                    //     />
-                    // </Draggable>
-                // })
-            } */}
             
             <h1>Reaction Table Screen</h1>
             <p>we are children of screen :D</p>

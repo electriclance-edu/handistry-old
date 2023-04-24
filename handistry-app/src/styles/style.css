@@ -347,6 +347,11 @@ SCREEN TAGS
     z-index: calc((5 - var(--shelfInd)) * 10);
     perspective:300px;
     perspective-origin:top; 
+    pointer-events: none;
+}
+
+.Stockroom-shelf * {
+    pointer-events: all;
 }
 
 .Stockroom-shelf-top {
