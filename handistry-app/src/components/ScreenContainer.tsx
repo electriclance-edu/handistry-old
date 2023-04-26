@@ -2,7 +2,6 @@
    IMPORTS
 ------------*/
 import React, { useState } from 'react';
-import Draggable from './Draggable';
 import Interactive from './Interactive';
 import Screen from './Screen';
 import MainMenu from '../screens/Menu';
@@ -29,7 +28,7 @@ function ScreenContainer() {
     return (
         <div className="ScreenContainer" style={ScreenContainerStyle}>
             <Screen index={0}>
-                <div onClick = {() => {console.log(equipmentList)}}>Check Equipment List</div>
+                <div className = "debug-button" onClick = {() => {console.log(equipmentList)}}>Check Equipment List</div>
                 <MainMenu/>
             </Screen>
             <Screen index={1}>

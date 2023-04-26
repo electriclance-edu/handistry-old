@@ -32,7 +32,41 @@ function Stockroom({ setEquipmentList } : any) {
                     new Map(
                         [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
                     ),
-                    500
+                    Math.floor((500 + (Math.random() * 500) - 250) / 10) * 10
+                ),
+                "beaker"
+            )
+        }/>
+    const glassware2 = <Glassware
+        data={
+            new GlasswareModel(
+                "erlenmeyerFlask",
+                "../resources/img/erlenmeyerFlask.png",
+                "../resources/img/erlenmeyerFlask-mask.png",
+                750,
+                new Mixture(
+                    //@ts-ignore
+                    new Map(
+                        [["L. juice", CHEMICAL_LIST.get("Zesto Tetrapak")]]
+                    ),
+                    Math.floor(Math.random() * 500 / 10) * 10 + 250
+                ),
+                "beaker"
+            )
+        }/>
+    const glassware3 = <Glassware
+        data={
+            new GlasswareModel(
+                "erlenmeyerFlask",
+                "../resources/img/erlenmeyerFlask.png",
+                "../resources/img/erlenmeyerFlask-mask.png",
+                750,
+                new Mixture(
+                    //@ts-ignore
+                    new Map(
+                        [["L. potion", CHEMICAL_LIST.get("Essence of Health")]]
+                    ),
+                    Math.floor(Math.random() * 100 / 10) * 10 + 300
                 ),
                 "beaker"
             )
@@ -41,7 +75,7 @@ function Stockroom({ setEquipmentList } : any) {
     return (
         <div className='Stockroom'>
             <div className="Stockroom-shelf" style={{"--shelfInd": 1} as React.CSSProperties}>
-                <div onClick = {() => addEquipment(glassware1)}>Generate New Thing</div>
+                <div className = "debug-button" onClick = {() => addEquipment([glassware1, glassware1, glassware2, glassware3][Math.floor(Math.random() * 4)])}>Generate New Thing</div>
                 <div className="Stockroom-shelf-top"></div>
             </div>
         </div>

@@ -2,8 +2,9 @@
    IMPORTS
 ------------*/
 import React from 'react';
-import Draggable from '../components/Draggable';
+import Interactive from '../components/Interactive';
 import Glassware from '../components/Glassware';
+import Tooltip from '../components/Tooltip';
 import GlasswareContainer from '../components/GlasswareContainer';
 import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
 import '../styles/style.css';
@@ -13,14 +14,14 @@ function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing
 
     return (
         <div className="Tabletop">
-            <div onClick = {() => console.log(equipmentList)}>Check Tabletop EquipmentList</div>
+            <div  className = "debug-button" onClick = {() => console.log(equipmentList)}>Check Tabletop EquipmentList</div>
 
             <GlasswareContainer> {/*not the cause of problem*/}
                 {Array.from(equipmentList.equipmentList, eql => { //not the cause of problem
                     var equipment : any = eql;
                     // console.log("New object on tabletop" + eql); // un-comment when debugging
                     // console.log(equipment); // un-comment when debugging
-                    return (<Draggable>
+                    return (<Interactive>
                         <Glassware
                             data={
                                 new GlasswareModel(
@@ -33,7 +34,15 @@ function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing
                                 )
                             }
                         />
-                    </Draggable>);
+                        <Tooltip
+                            data={
+                                {
+                                    equipmentName:equipment.props.data.name,
+                                    capacity:equipment.props.data.maxCapacity,
+                                    mixture:equipment.props.data.mixture
+                                }
+                            }/>
+                    </Interactive>);
                 })}
             </GlasswareContainer>
             

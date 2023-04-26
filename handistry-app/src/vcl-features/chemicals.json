@@ -10,6 +10,26 @@
         "color": "rgba(48, 217, 255, 0.5)"
     },
     {
+        "name": "L. juice",
+        "formula": "Zesto Tetrapak",
+        "phase": "l",
+        "molarMass": 20,
+        "charge": -2,
+        "enthalpyForm": -123.45,
+        "entropyForm": 12.34,
+        "color": "rgba(255, 125, 50, 0.5)"
+    },
+    {
+        "name": "L. potion",
+        "formula": "Essence of Health",
+        "phase": "l",
+        "molarMass": 20,
+        "charge": -2,
+        "enthalpyForm": -123.45,
+        "entropyForm": 12.34,
+        "color": "rgba(255, 50, 150, 0.5)"
+    },
+    {
         "name": "Aq. hydronium ion",
         "formula": "H+(aq)",
         "phase": "aq",
