@@ -28,8 +28,8 @@ function ScreenContainer() {
 
     return (
         <div className="ScreenContainer" style={ScreenContainerStyle}>
-            <div onClick = {() => {console.log(equipmentList)}}>Check Equipment List</div>
             <Screen index={0}>
+                <div onClick = {() => {console.log(equipmentList)}}>Check Equipment List</div>
                 <MainMenu/>
             </Screen>
             <Screen index={1}>
@@ -42,29 +42,6 @@ function ScreenContainer() {
                 <div className="reactionTable-top"></div>
                 <div className="reactionTable-top-border"></div>
                 <div className="reactionTable-bottom"></div>
-            </div>
-            {/* temporary */}
-            <div className="GlasswareContainer">
-                <Draggable>
-                    <Glassware
-                        data={
-                            new GlasswareModel(
-                                "erlenmeyerFlask",
-                                "../resources/img/erlenmeyerFlask.png",
-                                "../resources/img/erlenmeyerFlask-mask.png",
-                                1000,
-                                new Mixture(
-                                    //@ts-ignore
-                                    new Map(
-                                        [["L. water", CHEMICAL_LIST.get("H2O(l)")]]
-                                    ),
-                                    500
-                                ),
-                                "beaker"
-                            )
-                        }
-                    />
-                </Draggable>
             </div>
 
             <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {
