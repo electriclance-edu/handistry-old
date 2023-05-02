@@ -7,6 +7,7 @@ import Screen from './Screen';
 import MainMenu from '../screens/Menu';
 import Tabletop from '../screens/Tabletop';
 import Stockroom from '../screens/Stockroom';
+import GestureDemo from '../screens/GestureDemo';
 import GlasswareContainer from './GlasswareContainer';
 import '../styles/style.css';
 // TEMPORARY IMPORTS
@@ -27,15 +28,18 @@ function ScreenContainer() {
 
     return (
         <div className="ScreenContainer" style={ScreenContainerStyle}>
-            <Screen index={0}>
+            <Screen index={1}>
                 <div className = "debug-button" onClick = {() => {console.log(equipmentList)}}>Check Equipment List</div>
                 <MainMenu/>
             </Screen>
-            <Screen index={1}>
+            <Screen index={2}>
                 <Tabletop equipmentList = {equipmentList}/>
             </Screen>
-            <Screen index={2}>
+            <Screen index={3}>
                 <Stockroom setEquipmentList = {setEquipmentList}/>
+            </Screen>
+            <Screen index={4}>
+                <GestureDemo/>
             </Screen>
             <div className="reactionTable">
                 <div className="reactionTable-top"></div>
@@ -44,10 +48,10 @@ function ScreenContainer() {
             </div>
 
             <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {
-                setScreen(clamp(screen - 1, 0, 2))}
+                setScreen(clamp(screen - 1, 0, 3))}
             }></div>
             <div className="ToNextScreen flex-centered" onMouseOver={(e) => {
-                setScreen(clamp(screen + 1, 0, 2))}
+                setScreen(clamp(screen + 1, 0, 3))}
             }></div>
         </div>
     );

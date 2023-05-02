@@ -4,7 +4,10 @@
 import React from 'react';
 import '../styles/style.css';
 
-// The Menu screen which acts as the landing screen for the user.
+/*
+The Menu screen acts as the landing screen for the user.
+It features the app title and logo.
+*/
 function Menu() {
 
     const CurrentExpName: string = "Titration of Acetic Acid";

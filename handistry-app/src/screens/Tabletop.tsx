@@ -1,7 +1,7 @@
 /*------------
    IMPORTS
 ------------*/
-import React from 'react';
+import { useRef } from 'react';
 import Interactive from '../components/Interactive';
 import Glassware from '../components/Glassware';
 import Tooltip from '../components/Tooltip';
@@ -19,6 +19,7 @@ function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing
             <GlasswareContainer> {/*not the cause of problem*/}
                 {Array.from(equipmentList.equipmentList, eql => { //not the cause of problem
                     var equipment : any = eql;
+                    // console.log(equipment.getBoundingClientRect().width);
                     // console.log("New object on tabletop" + eql); // un-comment when debugging
                     // console.log(equipment); // un-comment when debugging
                     return (<Interactive>
