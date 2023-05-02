@@ -81,7 +81,7 @@ h1, h2, h3, h4, h5, h6 {
 /*-----------
 ABOVE-SCREEN TAGS
 -----------*/
-.draggable .Tooltip {
+.interactive .Tooltip {
     position:absolute;
     left:50%;
     transform:translate(-50%,10px);
@@ -93,7 +93,7 @@ ABOVE-SCREEN TAGS
     transition:0.2s;
     opacity:0;
 }
-.draggable:hover .Tooltip {
+.interactive:hover .Tooltip {
     opacity:1;
 }
 .Tooltip .extraInfo {
@@ -229,7 +229,7 @@ CHEMICAL TAGS
 /*-----------
 DRAGGABLE TAGS
 -----------*/
-.draggable {
+.interactive {
     left:calc((var(--x) * 1px));
     top:calc((var(--y) * 1px));
     transform:translate(-50%,-50%) scale(0.95);
@@ -237,16 +237,16 @@ DRAGGABLE TAGS
     position:absolute;
     z-index:0;
 }
-.draggable:hover {
+.interactive:hover {
     z-index:10;
     transform:translate(-50%,-50%) scale(1);
 }
-.draggable:active {
+.interactive:active {
     z-index:10;
     filter:drop-shadow(0 0 0px rgb(255,255,255))
            drop-shadow(0 0 5px rgba(180, 21, 87, 0.7));
 }
-.draggable::before {
+.interactive::before {
     content:"";
     display:block;
     position:absolute;
@@ -257,6 +257,12 @@ DRAGGABLE TAGS
     height:30%;
     background-image: radial-gradient(var(--color-Shadow-transparent) 40%, transparent 70%);
     z-index:-1;
+}
+.passiveIntersector {
+    background-color:palevioletred;
+}
+.activeIntersector {
+    background-color:palegreen;
 }
 /*-----------
 SCREEN TAGS

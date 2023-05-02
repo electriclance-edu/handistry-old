@@ -1,18 +1,20 @@
 /*------------
    IMPORTS
 ------------*/
-import React, { useState, useCallback } from "react";
+import React, { useRef, useState, useCallback } from "react";
 
-interface DraggableProps {
-    children: React.ReactNode;
+interface InteractiveProps {
+    children : React.ReactNode;
+    updateIntersection : Function;
+    index : Number;
 }
-
 /*
-A parent container that makes nested components draggable.
+A parent container that makes nested components dragga  ble.
 Dragging occurs when mouse is held and moved.
 Dragging stops when mouse is released.
 */
-function Draggable(props : DraggableProps) {
+function Interactive(props : InteractiveProps) {
+    const ref = useRef(null);
     const [position, setPosition] = useState({
         x: window.innerWidth / 2,
         y: window.innerHeight / 2
@@ -20,7 +22,7 @@ function Draggable(props : DraggableProps) {
 
     const manageDragMove = (e : MouseEvent) => {
         e = e || window.event;
-        e.preventDefault();
+        e.preventDefault(); 
 
         setPosition({
             x: e.clientX,
@@ -28,31 +30,32 @@ function Draggable(props : DraggableProps) {
         });
     }
 
-    const callback = useCallback(manageDragMove, [])
+    const callback = useCallback(manageDragMove, []);
 
     const setDraggable = (e : MouseEvent, elem : any, state : boolean) => {
-        console.log("setDraggable: " + state); //un-comment when debugging
         //@ts-ignore
-        if (state) document.addEventListener("mousemove", callback, true);
-        //@ts-ignore
-        else {
-            console.log(state + "help") //un-comment when debugging
+        if (state) {
+            document.addEventListener("mousemove", callback, true);
+            //@ts-ignore
+            ref.current.classList.remove("intersection");
+        } else {
             document.removeEventListener("mousemove", callback, true);
+            props.updateIntersection(ref);
         }
     }
 
-    const DraggableStyle = {
+    const InteractiveStyle = {
         "--x": position.x,
         "--y": position.y,
     } as React.CSSProperties;
 
     return (
-        <div className="draggable" 
+        <div ref={ref} className="interactive" data-index={props.index} 
             //@ts-ignore
             onMouseDown={(e) => {setDraggable(e, this, true)}}
             //@ts-ignore
             onMouseUp={(e) => {setDraggable(e, this, false)}}
-            style={DraggableStyle}
+            style={InteractiveStyle}
         >
             {props.children}
         </div>
@@ -63,4 +66,4 @@ function clamp(value : number, min : number, max : number) {
     return Math.max(Math.min(value, max), min);
 }
 
-export default Draggable;
+export default Interactive;
