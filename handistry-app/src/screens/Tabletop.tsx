@@ -1,7 +1,7 @@
 /*------------
    IMPORTS
 ------------*/
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Interactive from '../components/Interactive';
 import Glassware from '../components/Glassware';
 import { Chemical } from '../vcl-model/Chemical';
@@ -32,6 +32,7 @@ function checkIntersection(rect1 : any, rect2 : any) {
 function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing in tabletop
     var activeInteractor = {} as any;
     var passiveInteractor = {} as any;
+    const [updateState, setUpdateState] = useState(0);
 
     const updateIntersection = (reference : any) => {
         try {
@@ -79,10 +80,20 @@ function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing
                 // console.log("did we just win?", passiveMixture);
                 passiveMixture.updateChemicals(chemical, debug_transferRate / totalChemicals);
                 activeMixture.updateChemicals(chemical, -1 * debug_transferRate / totalChemicals);
-                // console.log("we just did.", passiveMixture);
+                console.log(domInteractives[passiveInteractor.component]);
             });
-            activeInteractor.component.forceUpdate();
-            passiveInteractor.component.forceUpdate();
+            setUpdateState(updateState + 1);
+            // let elementPassive = domInteractives[passiveInteractor.component];
+            // console.log(elementPassive.children[0].component);
+            // for (let c = 0; c < elementPassive.children.length; c++) {
+            //     let child = elementPassive.children[c];
+            //     console.log(child);
+            //   }
+            // activeInteractor.component.forceUpdate();
+            // passiveInteractor.component.forceUpdate();
+            // window.location.reload();
+            // let thisTableTop = document.getElementsByClassName("Tabletop")[0];
+            // console.log("thistabletop: " + thisTableTop);
         } catch (Exception) {}
 
     };
@@ -123,9 +134,9 @@ function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing
                 {elementArray}
             </GlasswareContainer>
             
-            <h1>Reaction Table Screen</h1>
+            {/* <h1>Reaction Table Screen</h1>
             <p>we are children of screen :D</p>
-            <p>Hello</p>
+            <p>Hello</p> */}
         </div>
     );
 }

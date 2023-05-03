@@ -10,7 +10,7 @@ It features the app title and logo.
 */
 function Menu() {
 
-    const CurrentExpName: string = "Titration of Acetic Acid";
+    const CurrentExpName: string = "Alpha Test Demo";
 
     return (
         <div className="MenuScreen">

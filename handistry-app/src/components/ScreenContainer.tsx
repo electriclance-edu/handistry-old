@@ -28,18 +28,18 @@ function ScreenContainer() {
 
     return (
         <div className="ScreenContainer" style={ScreenContainerStyle}>
-            <Screen index={1}>
+            {/* <Screen index={0}>
+                <GestureDemo/>
+            </Screen> */}
+            <Screen index={0}>
                 <div className = "debug-button" onClick = {() => {console.log(equipmentList)}}>Check Equipment List</div>
                 <MainMenu/>
             </Screen>
-            <Screen index={2}>
+            <Screen index={1}>
                 <Tabletop equipmentList = {equipmentList}/>
             </Screen>
-            <Screen index={3}>
+            <Screen index={2}>
                 <Stockroom setEquipmentList = {setEquipmentList}/>
-            </Screen>
-            <Screen index={4}>
-                <GestureDemo/>
             </Screen>
             <div className="reactionTable">
                 <div className="reactionTable-top"></div>
@@ -48,10 +48,10 @@ function ScreenContainer() {
             </div>
 
             <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {
-                setScreen(clamp(screen - 1, 0, 3))}
+                setScreen(clamp(screen - 1, 0, 2))}
             }></div>
             <div className="ToNextScreen flex-centered" onMouseOver={(e) => {
-                setScreen(clamp(screen + 1, 0, 3))}
+                setScreen(clamp(screen + 1, 0, 2))}
             }></div>
         </div>
     );

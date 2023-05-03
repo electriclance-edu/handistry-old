@@ -1,7 +1,7 @@
 // extends equipment
 // has an internal fill state that determines how high/low the vesselContent should be
 // has an svg mask for the vesselContent so it conforms to the shape of the vessel
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/style.css';
 import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
 
@@ -12,6 +12,14 @@ interface GlasswareProps {
 }
 
 function Glassware(props : GlasswareProps) {
+
+    const [updateState, setUpdateState] = useState(0);
+
+    const stateUpdate = () => {
+        setUpdateState(updateState+1)
+        console.log("glassware got updated");
+    }
+
     const glasswareStyle = {
         "--tilt": "0", 
         "--fillLevel": props.data.getMixture().getVolume() / props.data.getMaxCap() * 100,

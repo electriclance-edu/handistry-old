@@ -75,7 +75,19 @@ function Stockroom({ setEquipmentList } : any) {
     return (
         <div className='Stockroom'>
             <div className="Stockroom-shelf" style={{"--shelfInd": 1} as React.CSSProperties}>
-                <div className = "debug-button" onClick = {() => addEquipment([glassware1, glassware1, glassware2, glassware3][Math.floor(Math.random() * 4)])}>Generate New Thing</div>
+                <div className = "generator-button" onClick = {() => addEquipment([glassware1, glassware1, glassware2, glassware3][Math.floor(Math.random() * 4)])}>Generate Surprise</div>
+                <div className="Stockroom-shelf-top"></div>
+            </div>
+            <div className="Stockroom-shelf" style={{"--shelfInd": 2} as React.CSSProperties}>
+                <div className = "generator-button" onClick = {() => addEquipment(glassware1)}>Flask of Water (H2O)</div>
+                <div className="Stockroom-shelf-top"></div>
+            </div>
+            <div className="Stockroom-shelf" style={{"--shelfInd": 3} as React.CSSProperties}>
+                <div className = "generator-button" onClick = {() => addEquipment(glassware2)}>Flask of Juice (ZeStO)</div>
+                <div className="Stockroom-shelf-top"></div>
+            </div>
+            <div className="Stockroom-shelf" style={{"--shelfInd": 4} as React.CSSProperties}>
+                <div className = "generator-button" onClick = {() => addEquipment(glassware3)}>Flask of Potion (HeAlTH)</div>
                 <div className="Stockroom-shelf-top"></div>
             </div>
         </div>
