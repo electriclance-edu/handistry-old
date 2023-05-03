@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/handistry/static/css/main.033c8bf3.css",
-    "main.js": "/handistry/static/js/main.c0c7571e.js",
+    "main.css": "/handistry/static/css/main.3d4116c1.css",
+    "main.js": "/handistry/static/js/main.41326e8a.js",
     "static/media/texture-wood.jpg": "/handistry/static/media/texture-wood.04c06ac1a29a0452752d.jpg",
     "static/media/erlenmeyerFlask.png": "/handistry/static/media/erlenmeyerFlask.d7734b46c43163c3b210.png",
     "static/media/erlenmeyerFlask-mask.png": "/handistry/static/media/erlenmeyerFlask-mask.7aea6aaff7dede0e5c0d.png",
     "static/media/logo.png": "/handistry/static/media/logo.c567a6fc80782887d874.png",
     "index.html": "/handistry/index.html",
-    "main.033c8bf3.css.map": "/handistry/static/css/main.033c8bf3.css.map",
-    "main.c0c7571e.js.map": "/handistry/static/js/main.c0c7571e.js.map"
+    "main.3d4116c1.css.map": "/handistry/static/css/main.3d4116c1.css.map",
+    "main.41326e8a.js.map": "/handistry/static/js/main.41326e8a.js.map"
   },
   "entrypoints": [
-    "static/css/main.033c8bf3.css",
-    "static/js/main.c0c7571e.js"
+    "static/css/main.3d4116c1.css",
+    "static/js/main.41326e8a.js"
   ]
 }
