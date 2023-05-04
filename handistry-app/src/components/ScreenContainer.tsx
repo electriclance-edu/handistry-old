@@ -36,7 +36,7 @@ function ScreenContainer() {
                 <MainMenu/>
             </Screen>
             <Screen index={1}>
-                <Tabletop equipmentList = {equipmentList} setEquipmentList = {setEquipmentList}/>
+                <Tabletop equipmentList={equipmentList} setEquipmentList={setEquipmentList}/>
             </Screen>
             <Screen index={2}>
                 <Stockroom setEquipmentList = {setEquipmentList}/>

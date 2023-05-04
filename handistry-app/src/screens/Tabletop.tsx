@@ -28,14 +28,26 @@ function checkIntersection(rect1 : any, rect2 : any) {
     return dist < 100;
 }
 
+interface TabletopProps {
+    equipmentList: any,
+    setEquipmentList: any
+}
+
 // The Tabletop screen which acts as main working area.
 function Tabletop(equipmentList : any, setEquipmentList : any) { //issue of dragging is due to enclosing in tabletop
+    // var equipmentList = props.equipmentList;
+    // console.log(typeof equipmentList);
+    // var setEquipmentList = props.setEquipmentList;
     var activeInteractor = {} as any;
     var passiveInteractor = {} as any;
     const [updateState, setUpdateState] = useState(0);
 
     const resetEquipmentList = () => {
-        setEquipmentList([]);
+        console.log("reset list being called");
+        console.log(equipmentList);
+        // console.log(equipmentList.setEquipmentList);
+        equipmentList.setEquipmentList([]);
+        // setEquipmentList([]);
     }
 
     const updateIntersection = (reference : any) => {
@@ -136,6 +148,7 @@ function Tabletop(equipmentList : any, setEquipmentList : any) { //issue of drag
                 }/>
         </Interactive>);
     });
+    
 
     return (
         <div className="Tabletop">
