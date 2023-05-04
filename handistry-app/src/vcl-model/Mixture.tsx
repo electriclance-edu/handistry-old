@@ -70,6 +70,7 @@ export class Mixture {
 
     public calculateColor() {
         //// this code just gets the average of all colors without caring about ratios
+        if (this.chemicals.size==0) return `rgba(0,0,0,0)`;
         let firstColor = this.chemicals.entries().next().value[1].color;
         let ave = {
             r:firstColor.r,

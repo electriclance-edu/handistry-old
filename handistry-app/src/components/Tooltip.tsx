@@ -7,7 +7,9 @@ interface TooltipProps {
 
 function Tooltip(props : TooltipProps) {
     const iterator = props.data.mixture.chemicals.entries();
-    const firstChemical = iterator.next().value[1];
+    let firstChemical;
+    if (props.data.mixture.chemicals.size > 0) firstChemical = iterator.next().value[1];
+    else firstChemical = "none";
     
     var multipleChemicals = false;
     try {

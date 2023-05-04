@@ -19,7 +19,21 @@ function Stockroom({ setEquipmentList } : any) {
             return [...currentList, newGlassware];
         });
     }
-
+    const glassware0 = <Glassware //explodes
+        data={
+            new GlasswareModel(
+                "erlenmeyerFlask",
+                "../resources/img/erlenmeyerFlask.png",
+                "../resources/img/erlenmeyerFlask-mask.png",
+                1000,
+                new Mixture(
+                    //@ts-ignore
+                    new Map(),
+                    0
+                ),
+                "beaker"
+            )
+        }/>
     const glassware1 = <Glassware
         data={
             new GlasswareModel(
@@ -75,7 +89,8 @@ function Stockroom({ setEquipmentList } : any) {
     return (
         <div className='Stockroom'>
             <div className="Stockroom-shelf" style={{"--shelfInd": 1} as React.CSSProperties}>
-                <div className = "generator-button" onClick = {() => addEquipment([glassware1, glassware1, glassware2, glassware3][Math.floor(Math.random() * 4)])}>Generate Surprise</div>
+                {/* <div className = "generator-button" onClick = {() => addEquipment([glassware1, glassware1, glassware2, glassware3][Math.floor(Math.random() * 4)])}>Generate Surprise</div> */}
+                <div className = "generator-button" onClick = {() => addEquipment(glassware0)}>Empty Flask</div>
                 <div className="Stockroom-shelf-top"></div>
             </div>
             <div className="Stockroom-shelf" style={{"--shelfInd": 2} as React.CSSProperties}>
