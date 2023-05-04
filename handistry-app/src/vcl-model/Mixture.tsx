@@ -5,6 +5,42 @@ import { addReactions } from '../calculators/calculators';
 import * as tf from '@tensorflow/tfjs';
 var nr = require('newton-raphson-method');
 
+//https://www.30secondsofcode.org/js/s/rgb-to-hsl/
+const RGBToHSL = (r : number, g : number, b : number) => {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const l = Math.max(r, g, b);
+    const s = l - Math.min(r, g, b);
+    const h = s
+      ? l === r
+        ? (g - b) / s
+        : l === g
+        ? 2 + (b - r) / s
+        : 4 + (r - g) / s
+      : 0;
+    return {
+      h:60 * h < 0 ? 60 * h + 360 : 60 * h,
+      s:100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0),
+      l:(100 * (2 * l - s)) / 2,
+    };
+};
+
+// https://www.30secondsofcode.org/js/s/hsl-to-rgb/
+const HSLToRGB = (h : number, s : number, l : number) => {
+    s /= 100;
+    l /= 100;
+    const k = (n : number) => (n + h / 30) % 12;
+    const a = s * Math.min(l, 1 - l);
+    const f = (n: number) =>
+      l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+    return {
+        r: 255 * f(0), 
+        g: 255 * f(8), 
+        b: 255 * f(4)
+    };
+  };
+
 export class Mixture {
 
     private chemicals: Map<string, Chemical>;
@@ -33,8 +69,71 @@ export class Mixture {
     }
 
     public calculateColor() {
-        let color = this.chemicals.entries().next().value[1].color;
-        return color;
+        //// this code just gets the average of all colors without caring about ratios
+        let firstColor = this.chemicals.entries().next().value[1].color;
+        let ave = {
+            r:firstColor.r,
+            g:firstColor.g,
+            b:firstColor.b,
+            a:firstColor.a,
+        }
+
+        var chemicalsIterator = this.chemicals.entries(); 
+
+        for (var i = 1; i < this.chemicals.size; i++) {
+            var color = chemicalsIterator.next().value[1].color;
+            ave.r = ((ave.r / i) + color.r) / (i + 1);
+            ave.g = ((ave.g / i) + color.g) / (i + 1);
+            ave.b = ((ave.b / i) + color.b) / (i + 1)
+            ave.a = ((ave.a / i) + color.a) / (i + 1);
+        }
+
+        if (firstColor.r != ave.r) {
+            var tempHSL = RGBToHSL(ave.r, ave.g, ave.b);
+            tempHSL.h += 5;
+            tempHSL.s = 250;
+            var tempRGB = HSLToRGB(tempHSL.h, tempHSL.s, tempHSL.l);
+            ave.r = tempRGB.r;
+            ave.g = tempRGB.g;
+            ave.b = tempRGB.b;
+            ave.a = 0.55;
+        }
+
+        return `rgba(${ave.r},${ave.g},${ave.b},${ave.a})`;
+
+        //// this code is the old code that works wherein it just gets the first color
+        // let color = this.chemicals.entries().next().value[1].color;
+        // return `rgba(${color.r},${color.g},${color.b},${color.a})`;
+
+        //// this code tries to get the average of colors depending on how many moles tehre are
+        //// all this code doesnt work because moles internally arent being updated, once they are, uncomment this
+        // var totalMoles = 0;
+        // var chemicalsIterator = this.chemicals.entries(); 
+        // for (var i = 1; i < this.chemicals.size; i++) {
+        //     var moles = chemicalsIterator.next().value[1].moles;
+        //     totalMoles += moles;
+        // }
+        // console.log(totalMoles);
+
+        // let firstColor = this.chemicals.entries().next().value[1].color;
+        // let ave = {
+        //     r:0,
+        //     g:0,
+        //     b:0,
+        //     a:0,
+        // }
+        // chemicalsIterator = this.chemicals.entries(); 
+
+        // for (var i = 1; i < this.chemicals.size; i++) {
+        //     var nextChemical = chemicalsIterator.next().value[1];
+        //     console.log(nextChemical.moles);
+        //     ave.r += nextChemical.color.r * (nextChemical.moles / totalMoles);
+        //     ave.g += nextChemical.color.g * (nextChemical.moles / totalMoles);
+        //     ave.b += nextChemical.color.b * (nextChemical.moles / totalMoles);
+        //     ave.a += nextChemical.color.a * (nextChemical.moles / totalMoles);
+        // }
+
+        // return `rgba(${ave.r},${ave.g},${ave.b},${ave.a})`;
     }
 
     public searchReactions() {

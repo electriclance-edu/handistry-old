@@ -29,10 +29,14 @@ function checkIntersection(rect1 : any, rect2 : any) {
 }
 
 // The Tabletop screen which acts as main working area.
-function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing in tabletop
+function Tabletop(equipmentList : any, setEquipmentList : any) { //issue of dragging is due to enclosing in tabletop
     var activeInteractor = {} as any;
     var passiveInteractor = {} as any;
     const [updateState, setUpdateState] = useState(0);
+
+    const resetEquipmentList = () => {
+        setEquipmentList([]);
+    }
 
     const updateIntersection = (reference : any) => {
         try {
@@ -73,13 +77,20 @@ function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing
             activeInteractor.dom.classList.add("activeIntersector");
             var activeMixture = equipmentList.equipmentList[activeInteractor.dom.getAttribute("data-index")].props.data.mixture as Mixture;
             var passiveMixture = equipmentList.equipmentList[passiveInteractor.dom.getAttribute("data-index")].props.data.mixture as Mixture;
+            var passiveCap = equipmentList.equipmentList[passiveInteractor.dom.getAttribute("data-index")].props.data.getMaxCap();
 
             const totalChemicals = activeMixture.getChemicals().size;
             const debug_transferRate = 50;
             activeMixture.getChemicals().forEach((chemical : Chemical, name : string) => {
                 // console.log("did we just win?", passiveMixture);
-                passiveMixture.updateChemicals(chemical, debug_transferRate / totalChemicals);
-                activeMixture.updateChemicals(chemical, -1 * debug_transferRate / totalChemicals);
+                var amtToTransfer = debug_transferRate / totalChemicals;
+                //maximum amt to transfer is either whats enough to fill it (so u cant go above max), or whats leftover (so u cant go negative)
+                const maxTransfer = Math.min(passiveCap - passiveMixture.getVolume(), activeMixture.getVolume())
+                console.log(amtToTransfer, maxTransfer);
+                amtToTransfer = Math.min(amtToTransfer, maxTransfer);
+
+                passiveMixture.updateChemicals(chemical, amtToTransfer);
+                activeMixture.updateChemicals(chemical, -1 * amtToTransfer);
                 console.log(domInteractives[passiveInteractor.component]);
             });
             setUpdateState(updateState + 1);
@@ -98,7 +109,7 @@ function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing
 
     };
 
-    const elementArray = Array.from(equipmentList.equipmentList, (eql, index) => { //not the cause of problem
+    var elementArray = Array.from(equipmentList.equipmentList, (eql, index) => { //not the cause of problem
         var equipment : any = eql;
         // console.log("New object on tabletop" + eql); // un-comment when debugging
         // console.log(equipment); // un-comment when debugging
@@ -128,7 +139,11 @@ function Tabletop(equipmentList : any) { //issue of dragging is due to enclosing
 
     return (
         <div className="Tabletop">
-            <div  className = "debug-button" onClick = {() => console.log(equipmentList)}>Check Tabletop EquipmentList</div>
+            <div  
+                className = "debug-button" 
+                onClick = {() => {resetEquipmentList()}}>
+                Clear Table
+            </div>
 
             <GlasswareContainer> {/*not the cause of problem*/}
                 {elementArray}

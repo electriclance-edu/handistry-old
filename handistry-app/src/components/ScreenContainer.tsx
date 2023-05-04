@@ -36,7 +36,7 @@ function ScreenContainer() {
                 <MainMenu/>
             </Screen>
             <Screen index={1}>
-                <Tabletop equipmentList = {equipmentList}/>
+                <Tabletop equipmentList = {equipmentList} setEquipmentList = {setEquipmentList}/>
             </Screen>
             <Screen index={2}>
                 <Stockroom setEquipmentList = {setEquipmentList}/>
@@ -61,7 +61,7 @@ function ScreenContainer() {
  MISCELLANEOUS
 ------------*/
 
-function clamp(value : number, min : number, max : number) {
+export function clamp(value : number, min : number, max : number) {
     return Math.max(Math.min(value, max), min);
 }
 

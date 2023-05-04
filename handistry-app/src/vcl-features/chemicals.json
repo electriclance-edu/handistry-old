@@ -7,7 +7,7 @@
         "charge": 0,
         "enthalpyForm": -285.83,
         "entropyForm": 69.91,
-        "color": "rgba(48, 217, 255, 0.5)"
+        "color": {"r":48, "g":217, "b":255, "a":0.5}
     },
     {
         "name": "L. juice",
@@ -17,7 +17,7 @@
         "charge": -2,
         "enthalpyForm": -123.45,
         "entropyForm": 12.34,
-        "color": "rgba(255, 125, 50, 0.5)"
+        "color": {"r":255, "g":125, "b":50, "a":0.5}
     },
     {
         "name": "L. potion",
@@ -27,7 +27,7 @@
         "charge": -2,
         "enthalpyForm": -123.45,
         "entropyForm": 12.34,
-        "color": "rgba(255, 50, 150, 0.5)"
+        "color": {"r":255, "g":50, "b":150, "a":0.5}
     },
     {
         "name": "Aq. hydronium ion",
