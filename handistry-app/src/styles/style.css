@@ -277,7 +277,7 @@ SCREEN TAGS
     width:400vw;
     position:absolute;
     transition:1s;
-    left:calc(var(--screen) * -100vw);
+    transform:translatex(calc(var(--screen) * -100vw));
     /* pointer-events: none; */
 }
 .screen {
@@ -293,6 +293,7 @@ SCREEN TAGS
     position:fixed;
     top:50%;
     transform:translatey(-50%);
+    transition:0;
 }
 .ToPreviousScreen {
     left:0;

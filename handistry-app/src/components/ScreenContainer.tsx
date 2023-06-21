@@ -17,14 +17,17 @@ import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
 import { Mixture } from '../vcl-model/Mixture';
 
 
+interface ScreenContainerProps {
+    screen : number
+}
+
 /*
 ScreenContainer [300 vw] is a parent container for 3 Screen objects [100vw each]: Menu, Tabletop, and Stockroom.
 It has two side buttons that has hoverEvent to navigate through these 3 Screen objects
 */
-function ScreenContainer() {
-    const [screen, setScreen] = useState(0);
+function ScreenContainer(props : ScreenContainerProps) {
     const [equipmentList, setEquipmentList] = useState([]);
-    const ScreenContainerStyle = {"--screen": screen} as React.CSSProperties;
+    const ScreenContainerStyle = {"--screen": props.screen} as React.CSSProperties;
 
     return (
         <div className="ScreenContainer" style={ScreenContainerStyle}>
@@ -46,13 +49,6 @@ function ScreenContainer() {
                 <div className="reactionTable-top-border"></div>
                 <div className="reactionTable-bottom"></div>
             </div>
-
-            <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {
-                setScreen(clamp(screen - 1, 0, 2))}
-            }></div>
-            <div className="ToNextScreen flex-centered" onMouseOver={(e) => {
-                setScreen(clamp(screen + 1, 0, 2))}
-            }></div>
         </div>
     );
 }
@@ -60,9 +56,5 @@ function ScreenContainer() {
 /*------------
  MISCELLANEOUS
 ------------*/
-
-export function clamp(value : number, min : number, max : number) {
-    return Math.max(Math.min(value, max), min);
-}
 
 export default ScreenContainer;
