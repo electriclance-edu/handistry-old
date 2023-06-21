@@ -1,25 +1,19 @@
+/*
+TL;DR: The basic class representing all Equipment
+Parent class for Glassware
+*/
 export class Equipment {
+    //----- FIELDS -----//
+    private spritePath: string;     // [string] File path to equipment's sprite
+    private name: string;           // [string] Name associated with equipment instance
 
-    private spritePath: string;
-    private name: string;
-    private xpos: number
-    private ypos: number;
-
-    // CONSTRUCTOR
-    public constructor(name: string, spritePath: string, x: number, y: number) {
+    //----- CONSTRUCTOR -----//
+    public constructor(name: string, spritePath: string) {
         this.spritePath = spritePath;
         this.name = name;
-        this.xpos = x;
-        this.ypos = y;
     }
-    
-    // METHODS
-    
 
-    // GETTER FUNCTIONS
+    //----- GETTERS -----//
     public getSpritePath() { return this.spritePath; }
     public getName() { return this.name; }
-    public getX() { return this.xpos; }
-    public getY() { return this.ypos; }
-    
 }

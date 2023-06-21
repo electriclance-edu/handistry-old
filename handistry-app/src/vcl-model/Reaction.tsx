@@ -1,19 +1,31 @@
-import { calculateEnthalpyRxn, calculateEntropyRxn, calculateEquilibriumK, calculateGibbsFreeEnergy } from '../calculators/calculators';
+/*------------
+   IMPORTS
+------------*/
+import { calculateEnthalpyRxn,
+         calculateEntropyRxn,
+         calculateEquilibriumK,
+         calculateGibbsFreeEnergy } from '../calculators/calculators';
 import {Chemical} from './Chemical';
 
+/*
+TL;DR: The base class for all Reactions
+This class represents a chemical reaction (i.e., transformation from reagents to products)
+It also contains key information about the reaction
+*/
 export class Reaction {
 
-    private name: string;
-    private reactants: Map<string, [Chemical, number]>;
-    private products: Map<string, [Chemical, number]>;
-    private equilibriumK: number;
-    private gibbsFreeRxn: number; //standard gibbs free energy
-    private enthalpyRxn: number; //standard enthalpy
-    private entropyRxn: number; //standard entropy
-    private temperature: number;
-    private activationE: number;
+    //----- FIELDS -----//
+    private name: string;                               // [string] Reaction's name
+    private reactants: Map<string, [Chemical, number]>; // Map<reactant's name, [reactant Chemical, stoich. coeff.]
+    private products: Map<string, [Chemical, number]>;  // Map<product's name, [product Chemical, stoich. coeff.]
+    private equilibriumK: number;                       // [number] Dimensionless equilibrium constant
+    private gibbsFreeRxn: number;                       // [number] Standard gibbs free energy of reaction in kJ/mol
+    private enthalpyRxn: number;                        // [number] Standard enthalpy of reaction in kJ/mol
+    private entropyRxn: number;                         // [number] Standard entropy of reaction in J/mol-K
+    private temperature: number;                        // [number] Standard temperature (default is 298.15 K)
+    private activationE: number;                        // [number] Activation energy in joules (J)
 
-    // CONSTRUCTOR
+    //----- CONSTRUCTOR -----//
     public constructor(n: string,
                        rxnReactants: Map<string, [Chemical, number]>,
                        rxnProducts: Map<string, [Chemical, number]>,
@@ -29,11 +41,8 @@ export class Reaction {
         this.equilibriumK = calculateEquilibriumK(this.gibbsFreeRxn);
         this.activationE = Ea;
     }
-    
-    // METHODS
-    
-
-    // GETTER FUNCTIONS
+        
+    //----- GETTERS -----//
     public getName() { return this.name; }
     public getReactants() { return this.reactants; }
     public getProducts() { return this.products;}
@@ -43,7 +52,7 @@ export class Reaction {
     public getT() { return this.temperature }
     public getEa() { return this.activationE; }
 
-    // SETTER FUNCTIONS
+    //------ SETTERS ------//
     public setK(newK: number) { this.equilibriumK = newK; }
     public setH(newH: number) { this.enthalpyRxn = newH; }
     public setS(newS: number) { this.entropyRxn = newS; }

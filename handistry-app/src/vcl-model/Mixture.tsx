@@ -1,11 +1,17 @@
+/*------------
+   IMPORTS
+------------*/
 import {Chemical} from './Chemical';
 import {Reaction} from './Reaction';
 import REACTION_LIST from '../vcl-features/LoadReactions';
 import { addReactions } from '../calculators/calculators';
-import * as tf from '@tensorflow/tfjs';
 var nr = require('newton-raphson-method');
 
-//https://www.30secondsofcode.org/js/s/rgb-to-hsl/
+/*
+Converts RGB to HSL
+Reference: https://www.30secondsofcode.org/js/s/rgb-to-hsl/
+To-do: Transfer this to a calculator file
+*/
 const RGBToHSL = (r : number, g : number, b : number) => {
     r /= 255;
     g /= 255;
@@ -26,7 +32,11 @@ const RGBToHSL = (r : number, g : number, b : number) => {
     };
 };
 
-// https://www.30secondsofcode.org/js/s/hsl-to-rgb/
+/*
+Converts HSL to RGB
+Reference: https://www.30secondsofcode.org/js/s/hsl-to-rgb/
+To-do: Transfer this to a calculator file
+*/
 const HSLToRGB = (h : number, s : number, l : number) => {
     s /= 100;
     l /= 100;
@@ -39,35 +49,48 @@ const HSLToRGB = (h : number, s : number, l : number) => {
         g: 255 * f(8), 
         b: 255 * f(4)
     };
-  };
+};
 
+/*
+TL;DR: The base class for all Mixtures
+This class represents a combination of chemicals
+This shouldn't be misinterpreted as literal mixtures (i.e., excluding solutions)
+For the purposes of this codebase, Mixtures is the umbrella term for any combination of chemicals
+*/
 export class Mixture {
+    //----- FIELDS -----//
+    private chemicals: Map<string, Chemical>;   // [Map] key = name of chemical, value = Chemical instance
+    private volume: number;                     // [number] Volume of the mixture in milliliters (mL)
 
-    private chemicals: Map<string, Chemical>;
-    private volume: number; 
-
-    // CONSTRUCTOR
+    //----- CONSTRUCTOR -----//
     public constructor(chemicals: Map<string, Chemical>, volume: number) {
         this.chemicals = chemicals;
         this.volume = volume;
     }
     
-    // METHODS
+    //----- METHODS -----//
+
+    // Adds a new chemical to the mixture's chemical field; Also updates volume
     public updateChemicals(new_chemical: Chemical, v: number): void { 
-        if (this.chemicals.get(new_chemical.formula) === undefined) {
-            console.log("new chemical added to mixture");
-            this.chemicals.set(window.structuredClone(new_chemical.formula), window.structuredClone(new_chemical));            
+        // If the chemical already exists in the mixture, then only add moles
+        if (this.chemicals.get(new_chemical.formula) !== undefined) {
+            let old_moles = window.structuredClone(this.chemicals.get(new_chemical.formula)?.moles);
+            console.log("old moles: " + old_moles); // Debugging purposes
+            let old_reference = this.chemicals.get(new_chemical.formula)?.moles;
+            //@ts-ignore
+            this.chemicals.get(new_chemical.formula).moles += window.structuredClone(new_chemical.moles); 
+            console.log("New moles: " + this.chemicals.get(new_chemical.formula)?.moles);
         }
+
+        // Otherwise, generate a new key-value pair in the Mixture's chemical map
         else {
-            //@ts-ignore
-            let old_moles = window.structuredClone(this.chemicals.get(new_chemical.formula).moles);
-            console.log("old moles: " + old_moles);
-            //@ts-ignore
-            this.chemicals.get(new_chemical.formula).moles = old_moles + window.structuredClone(new_chemical.moles);  
+            console.log("new chemical added to mixture"); // Debugging purposes
+            this.chemicals.set(window.structuredClone(new_chemical.formula), window.structuredClone(new_chemical));           
         }
         this.volume += v;
     }
 
+    // Mixture's color update logic
     public calculateColor() {
         //// this code just gets the average of all colors without caring about ratios
         if (this.chemicals.size==0) return `rgba(0,0,0,0)`;
@@ -137,6 +160,7 @@ export class Mixture {
         // return `rgba(${ave.r},${ave.g},${ave.b},${ave.a})`;
     }
 
+    // Given the current mixture chemical composition, searches for possible reaction/s to occur
     public searchReactions() {
         let overall_reaction: Reaction | null = null;
         REACTION_LIST.forEach((reaction) => {
@@ -155,16 +179,17 @@ export class Mixture {
                 console.log("got reaction");
             }
         });     
-        //@ts-ignore
         return overall_reaction; 
     }
 
+    // Propagates the mixture's chemical composition through a given reaction
+    // Uses the Newton-Raphson method for numerical approximation of the k_equation (ICE)
     public reactChemicals(mixture_reaction: Reaction) {
         console.log(mixture_reaction);
 
         const volume: number = this.getVolume();
 
-        
+        // Equilibrium equation representing ICE table 
         function k_equation(x: number) {
             let k_numerator_str = "";
             let k_denominator_str = "";
@@ -179,7 +204,7 @@ export class Mixture {
             mixture_reaction.getReactants().forEach((value: [Chemical, number], key: string) => {
                 if (value[0].phase === "aq" || value[0].phase === "g") {
                      k_denominator *= ((value[0].moles/volume) - (value[1]*x)/volume)**value[1];
-                     k_numerator_str += "[" + value[0].formula.toString() + " + " + value[1].toString() + "x" + "]" + "^" + value[1].toString();
+                     k_denominator_str += "[" + value[0].formula.toString() + " + " + value[1].toString() + "x" + "]" + "^" + value[1].toString();
                 } else {k_denominator *= 1;}
              });
             // console.log("k_numerator : " + k_numerator); //-> uncoment for debugging
@@ -229,7 +254,7 @@ export class Mixture {
     }
 
 
-    // GETTER FUNCTIONS
+    //----- GETTERS -----//
     public getChemicals() { return this.chemicals; }
     public getVolume() { return this.volume; }
 }
