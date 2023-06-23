@@ -1,10 +1,10 @@
 /*------------
    IMPORTS
 ------------*/
-import {Chemical} from './Chemical';
-import {Reaction} from './Reaction';
+import { Chemical } from './Chemical';
+import { Reaction } from './Reaction';
+import { addReactions } from '../utilities/calculators';
 import REACTION_LIST from '../vcl-features/LoadReactions';
-import { addReactions } from '../calculators/calculators';
 var nr = require('newton-raphson-method');
 
 /*
@@ -59,7 +59,7 @@ For the purposes of this codebase, Mixtures is the umbrella term for any combina
 */
 export class Mixture {
     //----- FIELDS -----//
-    private chemicals: Map<string, Chemical>;   // [Map] key = name of chemical, value = Chemical instance
+    private chemicals: Map<string, Chemical>;   // [Map] key = formula of chemical, value = Chemical instance
     private volume: number;                     // [number] Volume of the mixture in milliliters (mL)
 
     //----- CONSTRUCTOR -----//
@@ -70,7 +70,7 @@ export class Mixture {
     
     //----- METHODS -----//
 
-    // Adds a new chemical to the mixture's chemical field; Also updates volume
+    /* Adds a new chemical to the mixture's chemical field; Also updates volume */
     public updateChemicals(new_chemical: Chemical, v: number): void { 
         // If the chemical already exists in the mixture, then only add moles
         if (this.chemicals.get(new_chemical.formula) !== undefined) {
@@ -90,7 +90,7 @@ export class Mixture {
         this.volume += v;
     }
 
-    // Mixture's color update logic
+    /* Mixture's color update logic --> for lance to do */
     public calculateColor() {
         //// this code just gets the average of all colors without caring about ratios
         if (this.chemicals.size==0) return `rgba(0,0,0,0)`;
@@ -160,7 +160,7 @@ export class Mixture {
         // return `rgba(${ave.r},${ave.g},${ave.b},${ave.a})`;
     }
 
-    // Given the current mixture chemical composition, searches for possible reaction/s to occur
+    /* Given the current mixture chemical composition, searches for possible reaction/s to occur */
     public searchReactions() {
         let overall_reaction: Reaction | null = null;
         REACTION_LIST.forEach((reaction) => {

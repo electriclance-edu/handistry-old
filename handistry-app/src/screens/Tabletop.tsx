@@ -11,7 +11,7 @@ import GlasswareContainer from '../components/GlasswareContainer';
 import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
 import '../styles/style.css';
 
-
+/* Given 2 rectangular hitboxes, check if the 2 overlaps */
 function checkIntersection(rect1 : any, rect2 : any) {
     //https://stackoverflow.com/questions/12066870/how-to-check-if-an-element-is-overlapping-other-elements
     // return !(rect1.right < rect2.left || rect1.left > rect2.right || rect1.bottom < rect2.top || rect1.top > rect2.bottom);
@@ -28,20 +28,55 @@ function checkIntersection(rect1 : any, rect2 : any) {
     return dist < 100;
 }
 
+/* Props for Tabletop */
 interface TabletopProps {
     equipmentList: any,
     setEquipmentList: any
 }
 
-// The Tabletop screen which acts as main working area.
-function Tabletop(equipmentList : any, setEquipmentList : any) { //issue of dragging is due to enclosing in tabletop
-    // var equipmentList = props.equipmentList;
-    // console.log(typeof equipmentList);
-    // var setEquipmentList = props.setEquipmentList;
+/*
+TL;DR: The main working area.
+The Tabletop screen is where the user can perform the experiment.
+Here, the user may drag-and-drop glassware and make them interact with one another.
+
+To-do: Integrate virtual cursor and NUI.
+*/
+function Tabletop(equipmentList : any, setEquipmentList : any) {
+    //----- VARIABLES & STATES -----//
     var activeInteractor = {} as any;
     var passiveInteractor = {} as any;
     const [updateState, setUpdateState] = useState(0);
+    var elementArray = Array.from(equipmentList.equipmentList, (eql, index) => { //not the cause of problem
+        var equipment : any = eql;
+        // console.log("New object on tabletop" + eql); // un-comment when debugging
+        // console.log(equipment); // un-comment when debugging
+        return (<Interactive updateIntersection={updateIntersection} index={index}>
+            <Glassware
+                data={
+                    new GlasswareModel(
+                        equipment.props.data.name,
+                        equipment.props.data.spritePath,
+                        equipment.props.data.maskPath,
+                        equipment.props.data.maxCapacity,
+                        equipment.props.data.mixture,
+                        equipment.props.data.transferMethod
+                    )
+                }
+            />
+            <Tooltip
+                data={
+                    {
+                        equipmentName:equipment.props.data.name,
+                        capacity:equipment.props.data.maxCapacity,
+                        mixture:equipment.props.data.mixture
+                    }
+                }/>
+        </Interactive>);
+    });
 
+    //----- FUNCTIONS -----//
+    
+    /* Function for clearing the Tabletop screen of all equipment. */
     const resetEquipmentList = () => {
         console.log("reset list being called");
         console.log(equipmentList);
@@ -49,7 +84,7 @@ function Tabletop(equipmentList : any, setEquipmentList : any) { //issue of drag
         equipmentList.setEquipmentList([]);
         // setEquipmentList([]);
     }
-
+    /* Function that handles equipment interactions. */
     const updateIntersection = (reference : any) => {
         try {
             passiveInteractor.dom.classList.remove("passiveIntersector");
@@ -120,36 +155,8 @@ function Tabletop(equipmentList : any, setEquipmentList : any) { //issue of drag
         } catch (Exception) {}
 
     };
-
-    var elementArray = Array.from(equipmentList.equipmentList, (eql, index) => { //not the cause of problem
-        var equipment : any = eql;
-        // console.log("New object on tabletop" + eql); // un-comment when debugging
-        // console.log(equipment); // un-comment when debugging
-        return (<Interactive updateIntersection={updateIntersection} index={index}>
-            <Glassware
-                data={
-                    new GlasswareModel(
-                        equipment.props.data.name,
-                        equipment.props.data.spritePath,
-                        equipment.props.data.maskPath,
-                        equipment.props.data.maxCapacity,
-                        equipment.props.data.mixture,
-                        equipment.props.data.transferMethod
-                    )
-                }
-            />
-            <Tooltip
-                data={
-                    {
-                        equipmentName:equipment.props.data.name,
-                        capacity:equipment.props.data.maxCapacity,
-                        mixture:equipment.props.data.mixture
-                    }
-                }/>
-        </Interactive>);
-    });
     
-
+    //----- RETURN -----//
     return (
         <div className="Tabletop">
             <div  
@@ -157,14 +164,9 @@ function Tabletop(equipmentList : any, setEquipmentList : any) { //issue of drag
                 onClick = {() => {resetEquipmentList()}}>
                 Clear Table
             </div>
-
-            <GlasswareContainer> {/*not the cause of problem*/}
+            <GlasswareContainer> 
                 {elementArray}
             </GlasswareContainer>
-            
-            {/* <h1>Reaction Table Screen</h1>
-            <p>we are children of screen :D</p>
-            <p>Hello</p> */}
         </div>
     );
 }

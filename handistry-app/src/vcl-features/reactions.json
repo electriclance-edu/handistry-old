@@ -8,5 +8,16 @@
         "K": 1e-14,
         "Trxn": 298,
         "Erxn": 74.4752        
+    },
+
+    {
+        "name": "The Juice & Potion Miracle",
+        "reactants": ["H2O(l)"],
+        "reactantsStoich": [2],
+        "products": ["ZeSTo(l)", "HeAlTh(l)"],
+        "productsStoich": [1, 1],
+        "K": 1,
+        "Trxn": 273.15,
+        "Erxn": 0.005        
     }
 ]

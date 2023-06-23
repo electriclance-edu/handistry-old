@@ -1,10 +1,13 @@
-import React from 'react';
+/*------------
+   IMPORTS
+------------*/
 import '../styles/style.css';
 
 interface GraduationLineGroupProps {
     graduation : number;
 }
 
+/* A component for the graduated-volume measurement line markings */
 function GraduationLineGroup(props : GraduationLineGroupProps) {
     return (
         <div className="GraduationLineGroup">

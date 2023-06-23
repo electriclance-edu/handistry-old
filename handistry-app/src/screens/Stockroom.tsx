@@ -2,15 +2,21 @@
    IMPORTS
 ------------*/
 import React from 'react';
-import Screen from '../components/Screen';
 import Glassware from '../components/Glassware';
 import CHEMICAL_LIST from '../vcl-features/LoadChemicals';
 import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
 import {Mixture} from '../vcl-model/Mixture';
 import '../styles/style.css';
 
+/*
+TL;DR: The item generation page.
+The Stockroom screen is where the user can gather equipment (e.g., glassware, chemicals)
+to be used for the experiment they are doing.
+*/
 function Stockroom({ setEquipmentList } : any) {
 
+    //----- VARIABLES & STATES -----//
+    /* Passes up the updated list of generate glassware to the parent component. */
     const addEquipment = (newGlassware : any) => {
         console.log("bruh");
 
@@ -19,7 +25,10 @@ function Stockroom({ setEquipmentList } : any) {
             return [...currentList, newGlassware];
         });
     }
-    const glassware0 = <Glassware //explodes
+
+    //----- AVAILABLE GLASSWARE -----//
+    // To-do: Turn this into it's own JSON file for easier generation
+    const glassware0 = <Glassware
         data={
             new GlasswareModel(
                 "erlenmeyerFlask",
@@ -61,7 +70,7 @@ function Stockroom({ setEquipmentList } : any) {
                 new Mixture(
                     //@ts-ignore
                     new Map(
-                        [["L. juice", CHEMICAL_LIST.get("Zesto Tetrapak")]]
+                        [["L. juice", CHEMICAL_LIST.get("ZeSTo(l)")]]
                     ),
                     Math.floor(Math.random() * 500 / 10) * 10 + 250
                 ),
@@ -78,7 +87,7 @@ function Stockroom({ setEquipmentList } : any) {
                 new Mixture(
                     //@ts-ignore
                     new Map(
-                        [["L. potion", CHEMICAL_LIST.get("Essence of Health")]]
+                        [["L. potion", CHEMICAL_LIST.get("HeAlTh(l)")]]
                     ),
                     Math.floor(Math.random() * 100 / 10) * 10 + 300
                 ),
@@ -86,6 +95,7 @@ function Stockroom({ setEquipmentList } : any) {
             )
         }/>
 
+    //---- RETURN -----//
     return (
         <div className='Stockroom'>
             <div className="Stockroom-shelf" style={{"--shelfInd": 1} as React.CSSProperties}>
@@ -106,23 +116,12 @@ function Stockroom({ setEquipmentList } : any) {
                 <div className="Stockroom-shelf-top"></div>
             </div>
         </div>
-        // <div className="Stockroom">
-        //     {/* {equipmentGens2()} */}
-        //     <div className="Stockroom-shelf" style={{"--shelfInd": 1} as React.CSSProperties}>
-        //         <div onClick = {() => console.log("Lmao")}>Generate New Thing</div>
-        //         <div className="Stockroom-shelf-top"></div>
-        //     </div>
-        //     <div className="Stockroom-shelf" style={{"--shelfInd": 2} as React.CSSProperties}>
-        //         <div className="Stockroom-shelf-top"></div>
-        //     </div>
-        //     <div className="Stockroom-shelf" style={{"--shelfInd": 3} as React.CSSProperties}>
-        //         <div className="Stockroom-shelf-top"></div>
-        //     </div>
-        //     <div className="Stockroom-shelf" style={{"--shelfInd": 4} as React.CSSProperties}>
-        //         <div className="Stockroom-shelf-top"></div>
-        //     </div>
-        // </div>
     );
+}
+
+export default Stockroom;
+
+{ // ARCHIVED CODE (can be hidden / dropped down):
     // return (
     //         <div className="Stockroom">
     //             <div className="Stockroom-shelf">
@@ -164,6 +163,5 @@ function Stockroom({ setEquipmentList } : any) {
 // }
 
 // function Stockroom() {
-}
 
-export default Stockroom;
+}

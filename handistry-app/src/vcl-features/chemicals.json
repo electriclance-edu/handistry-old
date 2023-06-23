@@ -10,8 +10,8 @@
         "color": {"r":48, "g":217, "b":255, "a":0.5}
     },
     {
-        "name": "L. juice",
-        "formula": "Zesto Tetrapak",
+        "name": "L. Zesto Tetrapak",
+        "formula": "ZeSTo(l)",
         "phase": "l",
         "molarMass": 20,
         "charge": -2,
@@ -20,8 +20,8 @@
         "color": {"r":255, "g":125, "b":50, "a":0.5}
     },
     {
-        "name": "L. potion",
-        "formula": "Essence of Health",
+        "name": "L. Potion",
+        "formula": "HeAlTh(l)",
         "phase": "l",
         "molarMass": 20,
         "charge": -2,

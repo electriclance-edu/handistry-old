@@ -1,10 +1,15 @@
+/*------------
+   IMPORTS
+------------*/
 import React, { useState, MouseEvent } from 'react';
-import '../styles/style.css';
 import GraduationLineGroup from './GraduationLineGroup';
+import '../styles/style.css';
 
 interface GraduatedSideviewProps {
     graduations : number[];
 }
+
+/* A component for the graduated-volume measurement sidepanel */
 function GraduatedSideview(props : GraduatedSideviewProps) {
     const [fill, setFill] = useState(30);
     return (

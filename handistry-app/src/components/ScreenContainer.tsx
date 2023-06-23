@@ -2,36 +2,31 @@
    IMPORTS
 ------------*/
 import React, { useState } from 'react';
-import Interactive from './Interactive';
 import Screen from './Screen';
 import MainMenu from '../screens/Menu';
 import Tabletop from '../screens/Tabletop';
 import Stockroom from '../screens/Stockroom';
-import GestureDemo from '../screens/GestureDemo';
-import GlasswareContainer from './GlasswareContainer';
 import '../styles/style.css';
-// TEMPORARY IMPORTS
-import CHEMICAL_LIST from '../vcl-features/LoadChemicals';
-import Glassware from '../components/Glassware';
-import {Glassware as GlasswareModel} from '../vcl-model/Glassware';
-import { Mixture } from '../vcl-model/Mixture';
-
 
 interface ScreenContainerProps {
     screen : number
 }
 
 /*
+TL;DR: The sliding component containing all the screens
 ScreenContainer [300 vw] is a parent container for 3 Screen objects [100vw each]: Menu, Tabletop, and Stockroom.
-It has two side buttons that has hoverEvent to navigate through these 3 Screen objects
+It has two side "buttons" that has hoverEvent to navigate through these 3 Screen objects
 */
 function ScreenContainer(props : ScreenContainerProps) {
+
+    //----- VARIABLES & STATES -----//
     const [equipmentList, setEquipmentList] = useState([]);
     const ScreenContainerStyle = {"--screen": props.screen} as React.CSSProperties;
-
+    
+    //----- RETURN -----//
     return (
         <div className="ScreenContainer" style={ScreenContainerStyle}>
-            {/* <Screen index={0}>
+            {/* <Screen index={-1}> //un-comment when adding the GestureDemo screen
                 <GestureDemo/>
             </Screen> */}
             <Screen index={0}>
@@ -52,9 +47,5 @@ function ScreenContainer(props : ScreenContainerProps) {
         </div>
     );
 }
-
-/*------------
- MISCELLANEOUS
-------------*/
 
 export default ScreenContainer;

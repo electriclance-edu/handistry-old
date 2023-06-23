@@ -1,17 +1,21 @@
 /*------------
    IMPORTS
 ------------*/
-import React from 'react';
 import '../styles/style.css';
 
 /*
+TL;DR: The site's landing page.
 The Menu screen acts as the landing screen for the user.
 It features the app title and logo.
+
+For future extensions: Add UI to change experiments
 */
 function Menu() {
 
-    const CurrentExpName: string = "Alpha Test Demo";
+    //----- VARIABLES -----//
+    const CurrentExpName: string = "WIP Stage";
 
+    //---- RETURN -----//
     return (
         <div className="MenuScreen">
             <div className="MenuScreen-info">

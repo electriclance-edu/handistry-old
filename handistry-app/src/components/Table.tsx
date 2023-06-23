@@ -1,4 +1,9 @@
-import React from 'react';
+/* CURRENTLY DEPRECATED */
+
+
+/*------------
+   IMPORTS
+------------*/
 import '../styles/style.css';
 
 function Template() {

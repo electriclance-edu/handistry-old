@@ -4,13 +4,13 @@
 import { calculateEnthalpyRxn,
          calculateEntropyRxn,
          calculateEquilibriumK,
-         calculateGibbsFreeEnergy } from '../calculators/calculators';
-import {Chemical} from './Chemical';
+         calculateGibbsFreeEnergy } from '../utilities/calculators';
+import { Chemical } from './Chemical';
 
 /*
 TL;DR: The base class for all Reactions
 This class represents a chemical reaction (i.e., transformation from reagents to products)
-It also contains key information about the reaction
+It also contains key information about the reaction.
 */
 export class Reaction {
 

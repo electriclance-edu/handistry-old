@@ -6,8 +6,7 @@ import { HandLandmarker, FilesetResolver } from "@mediapipe/tasks-vision";
 import '../styles/style.css';
 
 /*
-The Menu screen acts as the landing screen for the user.
-It features the app title and logo.
+Gesture demo description
 */
 function GestureDemo() {
 

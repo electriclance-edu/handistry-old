@@ -8,10 +8,11 @@ interface InteractiveProps {
     updateIntersection : Function;
     index : Number;
 }
+
 /*
-A parent container that makes nested components dragga  ble.
-Dragging occurs when mouse is held and moved.
-Dragging stops when mouse is released.
+TL;DR: A parent container that makes nested components interactive (i.e., draggable).
+- Dragging occurs when mouse is held and moved.
+- Dragging stops when mouse is released.
 */
 function Interactive(props : InteractiveProps) {
     const ref = useRef(null);
@@ -62,6 +63,7 @@ function Interactive(props : InteractiveProps) {
     );
 }
 
+/* Restricting a value to be within the min value and max value, inclusively. */
 function clamp(value : number, min : number, max : number) {
     return Math.max(Math.min(value, max), min);
 }
