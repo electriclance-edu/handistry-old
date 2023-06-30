@@ -230,16 +230,16 @@ CHEMICAL TAGS
 DRAGGABLE TAGS
 -----------*/
 .interactive {
-    left:calc((var(--x) * 1px));
-    top:calc((var(--y) * 1px));
-    transform:translate(-50%,-50%) scale(0.95);
-    transition:transform 0.2s;
+    transform:translate(calc((var(--x) * 1px) - 50%),calc((var(--y) * 1px) - 50%));
     position:absolute;
     z-index:0;
 }
-.interactive:hover {
-    z-index:10;
-    transform:translate(-50%,-50%) scale(1);
+.interactive > .Glassware {
+    transform:scale(0.95);
+    transition:transform 0.2s;
+}
+.interactive:hover > .Glassware {
+    /* transform:scale(1); */
 }
 .interactive:active {
     z-index:10;
@@ -251,11 +251,11 @@ DRAGGABLE TAGS
     display:block;
     position:absolute;
     left:calc(50% - 3px);
-    transform:translatex(-50%);
     bottom:-12px;
+    transform:translatex(-50%);
     width:120%;
     height:30%;
-    background-image: radial-gradient(var(--color-Shadow-transparent) 40%, transparent 70%);
+    /* background-image: radial-gradient(var(--color-Shadow-transparent) 40%, transparent 70%); */
     z-index:-1;
 }
 .passiveIntersector {

@@ -34,15 +34,16 @@ function clamp(value : number, min : number, max : number) {
 }
 function attemptToSetScreen(newScreen : number, setScreen : Function) {
   if (hasNotChangedScreenInTheLast500Milliseconds) {
-    console.log("newScreen",newScreen);
+    // console.log("newScreen",newScreen);
     setScreen(newScreen);
     hasNotChangedScreenInTheLast500Milliseconds = false;
     setTimeout(() => {
       hasNotChangedScreenInTheLast500Milliseconds = true;
     },500);
-  } else {
-    console.log("silly you, hasNotChangedScreenInTheLast500Milliseconds is",hasNotChangedScreenInTheLast500Milliseconds);
   }
+  // } else {
+  //   console.log("silly you, hasNotChangedScreenInTheLast500Milliseconds is",hasNotChangedScreenInTheLast500Milliseconds);
+  // }
 }
 
 export default App;

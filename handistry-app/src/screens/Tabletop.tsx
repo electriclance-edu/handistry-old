@@ -46,33 +46,6 @@ function Tabletop(equipmentList : any, setEquipmentList : any) {
     var activeInteractor = {} as any;
     var passiveInteractor = {} as any;
     const [updateState, setUpdateState] = useState(0);
-    var elementArray = Array.from(equipmentList.equipmentList, (eql, index) => { //not the cause of problem
-        var equipment : any = eql;
-        // console.log("New object on tabletop" + eql); // un-comment when debugging
-        // console.log(equipment); // un-comment when debugging
-        return (<Interactive updateIntersection={updateIntersection} index={index}>
-            <Glassware
-                data={
-                    new GlasswareModel(
-                        equipment.props.data.name,
-                        equipment.props.data.spritePath,
-                        equipment.props.data.maskPath,
-                        equipment.props.data.maxCapacity,
-                        equipment.props.data.mixture,
-                        equipment.props.data.transferMethod
-                    )
-                }
-            />
-            <Tooltip
-                data={
-                    {
-                        equipmentName:equipment.props.data.name,
-                        capacity:equipment.props.data.maxCapacity,
-                        mixture:equipment.props.data.mixture
-                    }
-                }/>
-        </Interactive>);
-    });
 
     //----- FUNCTIONS -----//
     
@@ -156,6 +129,35 @@ function Tabletop(equipmentList : any, setEquipmentList : any) {
 
     };
     
+    //----- COMPONENT OF RETURN -----//
+    var elementArray = Array.from(equipmentList.equipmentList, (eql, index) => { //not the cause of problem
+        var equipment : any = eql;
+        // console.log("New object on tabletop" + eql); // un-comment when debugging
+        // console.log(equipment); // un-comment when debugging
+        return (<Interactive updateIntersection={updateIntersection} index={index}>
+            <Glassware
+                data={
+                    new GlasswareModel(
+                        equipment.props.data.name,
+                        equipment.props.data.spritePath,
+                        equipment.props.data.maskPath,
+                        equipment.props.data.maxCapacity,
+                        equipment.props.data.mixture,
+                        equipment.props.data.transferMethod
+                    )
+                }
+            />
+            <Tooltip
+                data={
+                    {
+                        equipmentName:equipment.props.data.name,
+                        capacity:equipment.props.data.maxCapacity,
+                        mixture:equipment.props.data.mixture
+                    }
+                }/>
+        </Interactive>);
+    });
+
     //----- RETURN -----//
     return (
         <div className="Tabletop">
