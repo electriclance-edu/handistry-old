@@ -6,6 +6,7 @@ import Screen from './Screen';
 import MainMenu from '../screens/Menu';
 import Tabletop from '../screens/Tabletop';
 import Stockroom from '../screens/Stockroom';
+import GestureDemo from '../screens/GestureDemo';
 import '../styles/style.css';
 
 interface ScreenContainerProps {
@@ -26,9 +27,9 @@ function ScreenContainer(props : ScreenContainerProps) {
     //----- RETURN -----//
     return (
         <div className="ScreenContainer" style={ScreenContainerStyle}>
-            {/* <Screen index={-1}> //un-comment when adding the GestureDemo screen
+            <Screen index={-1}>
                 <GestureDemo/>
-            </Screen> */}
+            </Screen>
             <Screen index={0}>
                 <div className = "debug-button" onClick = {() => {console.log(equipmentList)}}>Check Equipment List</div>
                 <MainMenu/>

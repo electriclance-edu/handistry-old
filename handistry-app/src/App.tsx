@@ -20,10 +20,10 @@ function App() {
         graduations={[300,200,100]}
       />
       <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {
-          attemptToSetScreen(clamp(screen - 1, 0, 2),setScreen)}
+          attemptToSetScreen(clamp(screen - 1, 0, 3),setScreen)}
       }></div>
       <div className="ToNextScreen flex-centered" onMouseOver={(e) => {
-          attemptToSetScreen(clamp(screen + 1, 0, 2),setScreen)}
+          attemptToSetScreen(clamp(screen + 1, 0, 3),setScreen)}
       }></div>
     </div>
   );
