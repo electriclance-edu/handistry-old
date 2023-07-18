@@ -3,8 +3,13 @@ import './App.css';
 import ScreenContainer from './components/ScreenContainer';
 import GraduatedSideview from './components/GraduatedSideview';
 import Background from './components/Background';
+import './styles/style.css';
 
 var hasNotChangedScreenInTheLast500Milliseconds : boolean = true;
+
+export var WebCam = (
+  <video id="webcam" width="100%" height="100%"></video>
+);
 
 function App() {
   const [screen, setScreen] = useState(0);
@@ -19,6 +24,7 @@ function App() {
       <GraduatedSideview 
         graduations={[300,200,100]}
       />
+      <div>{WebCam}</div>
       <div className="ToPreviousScreen flex-centered" onMouseOver={(e) => {
           attemptToSetScreen(clamp(screen - 1, 0, 3),setScreen)}
       }></div>

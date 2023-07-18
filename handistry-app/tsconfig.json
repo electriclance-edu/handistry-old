@@ -2,8 +2,9 @@
   "compilerOptions": {
     "checkJs": false,
     "types": ["node"],
-    "target": "es5",
+    "target": "esnext",
     "lib": [
+      "WebWorker",
       "dom",
       "dom.iterable",
       "esnext"

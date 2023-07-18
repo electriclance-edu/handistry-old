@@ -12,6 +12,7 @@
     "@types/jest": "^27.5.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "comlink": "^4.4.1",
     "newton-raphson-method": "^1.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

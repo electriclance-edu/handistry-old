@@ -3,31 +3,85 @@
 ------------*/
 import React, { useState, useRef, useEffect } from 'react';
 import { HandLandmarker, FilesetResolver } from "@mediapipe/tasks-vision";
+import WorkerBuilder from '../utilities/worker-builder';
+import NuiWorker from '../nui-module/nuiworker';
 import '../styles/style.css';
 
-const nuiWorker = new Worker('nuiworker.js'); //causes the web worker bugs
-var text = "Hello";
-
-nuiWorker.onmessage = (e) => {
-    console.log("received smth from worker");
-    // text = e.data;
-}
-console.log("sent smth to worker");
-nuiWorker.postMessage("lol");
+const nuiWorker = new WorkerBuilder(NuiWorker);
 
 /*
 Gesture demo description
 */
-function GestureDemo() {
+function GestureDemo(): JSX.Element {
+
+    const [text, setText] = useState("Original");
+    const [cameraState, setCameraState] = useState(false);
+    const [buttonText, setButtonText] = useState("Open Camera");
+    const camRef = useRef(null);
+    const interactiveCanvas = useRef(null);
+    var stream: any = null;
+
+    const getVideo = () => {
+        let video: any = null;
+        console.log("stream originally:" + stream);
+        navigator.mediaDevices.getUserMedia({ video: { width: 300 } })
+        
+        .then(mediastream => {
+            // console.log("streaming");
+            stream = mediastream;
+            // console.log("stream updated:" + stream);
+            let video = camRef.current;
+            //@ts-ignore
+            video.srcObject = mediastream;
+            //@ts-ignore
+            video.play();
+        })
+
+        .catch(err => {
+            console.error("error:", err);
+        });
+    };
+    const closeVideo = (videoElem : any) => {
+        const stream = videoElem.srcObject;
+        //@ts-ignore
+        const tracks = stream.getTracks();
+
+        tracks.forEach((track: any) => {
+            track.stop();
+        });
+
+        videoElem.srcObject = null;
+    };
+    const handleCamera = () => {
+        if (!cameraState) {
+            getVideo();
+            setButtonText("Close Camera");
+        }
+        else {
+            closeVideo(camRef.current);
+            setButtonText("Open Camera");
+        }
+    }
 
     return (
         <div className="GestureDemoScreen">
             <h1>Welcome to the gesture demo screen</h1>
-            <h1>{text}</h1>
-
+            <video id="webcam" ref={camRef} className="column"/>
             <div onClick = {() => {
-                console.log("worker:",nuiWorker);
-            }} className = "debug-button">{"Test Worker"}</div>
+                setCameraState(!cameraState);
+                handleCamera();
+            }} className = "debug-button">{buttonText}</div>
+
+            {/* <div onClick = {() => {
+                var array = ["A", "B", "C", "D", "E", "F", "G"];
+                var randomSend = array[Math.floor(Math.random() * array.length)];
+                nuiWorker.postMessage(randomSend);
+                console.log("sent smth to worker");
+                nuiWorker.onmessage = (e) => {
+                    console.log("received smth from worker");
+                    setText(e.data);
+                }
+            }} className = "debug-button">{"Test Worker"}</div> */}
         </div>
     );
 }

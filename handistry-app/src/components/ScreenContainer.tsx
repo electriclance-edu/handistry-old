@@ -27,17 +27,17 @@ function ScreenContainer(props : ScreenContainerProps) {
     //----- RETURN -----//
     return (
         <div className="ScreenContainer" style={ScreenContainerStyle}>
-            <Screen index={-1}>
+            <Screen index={0}>
                 <GestureDemo/>
             </Screen>
-            <Screen index={0}>
+            <Screen index={1}>
                 <div className = "debug-button" onClick = {() => {console.log(equipmentList)}}>Check Equipment List</div>
                 <MainMenu/>
             </Screen>
-            <Screen index={1}>
+            <Screen index={2}>
                 <Tabletop equipmentList={equipmentList} setEquipmentList={setEquipmentList}/>
             </Screen>
-            <Screen index={2}>
+            <Screen index={3}>
                 <Stockroom setEquipmentList = {setEquipmentList}/>
             </Screen>
             <div className="reactionTable">
