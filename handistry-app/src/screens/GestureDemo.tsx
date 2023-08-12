@@ -2,12 +2,22 @@
    IMPORTS
 ------------*/
 import React, { useState, useRef, useEffect } from 'react';
-import { HandLandmarker, FilesetResolver } from "@mediapipe/tasks-vision";
+import { GestureRecognizer, FilesetResolver } from "@mediapipe/tasks-vision";
 import WorkerBuilder from '../utilities/worker-builder';
 import NuiWorker from '../nui-module/nuiworker';
+import ModelMaker from '../nui-module/model-maker';
 import '../styles/style.css';
 
-const nuiWorker = new WorkerBuilder(NuiWorker);
+ModelMaker();
+const code = ModelMaker.toString();
+const blob = new Blob([`(${code})()`]);
+const nuiWorker: any = new WorkerBuilder(NuiWorker);
+// const nuiWorker = new Worker("../nui-module/nuiworker");
+
+nuiWorker.postMessage({
+    "status":"IMPORT",
+    "url": window.location.href,
+})
 
 /*
 Gesture demo description
@@ -18,7 +28,6 @@ function GestureDemo(): JSX.Element {
     const [cameraState, setCameraState] = useState(false);
     const [buttonText, setButtonText] = useState("Open Camera");
     const camRef = useRef(null);
-    const interactiveCanvas = useRef(null);
     var stream: any = null;
 
     const getVideo = () => {
@@ -56,11 +65,41 @@ function GestureDemo(): JSX.Element {
         if (!cameraState) {
             getVideo();
             setButtonText("Close Camera");
+            renderLoop();
         }
         else {
             closeVideo(camRef.current);
             setButtonText("Open Camera");
         }
+    }
+
+    
+
+    let lastVideoTime = -1;
+    const renderLoop = async() => {
+        const video = camRef.current;
+        //@ts-ignore
+        // console.log("webcam object:", video.currentTime);
+        const data1: number = video.currentTime;
+        const data = {
+            // 'video': video,
+            //@ts-ignore
+            // 'videoRef': camRef,
+            'timestamp': data1,
+            'status': "OK",
+            // 'gestureRecognizer': gestureRecognizer
+        }
+
+        //@ts-ignore
+        if (video.currentTime !== lastVideoTime) {
+          nuiWorker.postMessage(data);
+          //@ts-ignore
+          lastVideoTime = video.currentTime;
+        }
+      
+        requestAnimationFrame(() => {
+          renderLoop();
+        });
     }
 
     return (
@@ -71,6 +110,10 @@ function GestureDemo(): JSX.Element {
                 setCameraState(!cameraState);
                 handleCamera();
             }} className = "debug-button">{buttonText}</div>
+
+            <div onClick = {() => {
+                console.log(nuiWorker);
+            }} className = "debug-button2">{"Check web worker"}</div>
 
             {/* <div onClick = {() => {
                 var array = ["A", "B", "C", "D", "E", "F", "G"];

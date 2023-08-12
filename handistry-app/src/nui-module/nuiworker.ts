@@ -1,9 +1,16 @@
-// import { expose } from 'comlink';
 // eslint-disable-next-line import/no-anonymous-default-export
-export default() => {
+export default async() => {    
+
     // eslint-disable-next-line no-restricted-globals
-    self.onmessage = (e) => {
-        console.log("got from mainthread", e);
-        postMessage(e.data);
-    }    
+    // importScripts("test.js");
+
+    onmessage = (e: any) => {
+        if (e.data.status=="IMPORT") {
+        }
+        //@ts-ignore
+        // console.log(gestureRecognizer);
+        console.log(e.data.worker);
+        // const gestureRecognitionResult = gestureRecognizer.recognizeForVideo();
+        // postMessage(gestureRecognitionResult);
+    }
 }

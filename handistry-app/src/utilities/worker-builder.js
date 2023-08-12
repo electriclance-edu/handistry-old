@@ -1,7 +1,9 @@
-export default class WorkerBuilder extends Worker {
-    constructor(worker) {
+export default class WorkerBuilder {  
+  
+  constructor(worker) {
       const code = worker.toString();
       const blob = new Blob([`(${code})()`]);
-      return new Worker(URL.createObjectURL(blob));
+      const w = new Worker(URL.createObjectURL(blob));
+      return w;
     }
   }
